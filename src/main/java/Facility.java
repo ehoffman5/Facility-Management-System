@@ -30,7 +30,6 @@ public class Facility {
 
         facilities.put(facilityNumber, facilityName);
         System.out.println("Thank you, " + facilityName + " has now been added!");
-        scan.close();
     }
 
     // Remove a facility
@@ -39,7 +38,6 @@ public class Facility {
         facilityNumber = scan.nextInt();
         facilities.remove(facilityNumber);
         System.out.println("Facility number: " + facilityNumber + " has now been removed.");
-        scan.close();
     }
 
     // Print out a list of all current facilities
@@ -72,7 +70,7 @@ public class Facility {
                 System.out.println("Error, incorrect input.");
                 break;
         }
-
+        myScan.close();
     }
 
 }
