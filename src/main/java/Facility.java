@@ -70,7 +70,6 @@ public class Facility {
                 System.out.println("Error, incorrect input.");
                 break;
         }
-        myScan.close();
     }
 
 }
