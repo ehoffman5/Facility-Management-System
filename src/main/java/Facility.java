@@ -24,10 +24,6 @@ public class Facility {
         System.out.println("Please enter the facility number:");
         facilityNumber = scan.nextInt();
 
-        // Add instances of this new facility in the two other user interfaces
-        //FacilityMaintence.makeNew(facilityNumber);
-        //FacilityUse.makeNew(facilityNumber);
-
         facilities.put(facilityNumber, facilityName);
         System.out.println("Thank you, " + facilityName + " has now been added!");
     }

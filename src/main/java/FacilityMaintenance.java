@@ -13,58 +13,43 @@ public class FacilityMaintenance {
     public FacilityMaintenance() {
         facilityNumber = 0;
         requestDescription = "";
-        facilities = new HashMap<Integer, String>();
+        requests = new HashMap<Integer, String>();
     }
 
-    // Add new facility
-    public void addFacility() {
-        System.out.println("Please enter the name of your facility:");
-        requestDescription = scan.nextLine();
-
+    // Method for submitting a new request
+    public void makeFacilityMaintRequest() {
         System.out.println("Please enter the facility number:");
         facilityNumber = scan.nextInt();
 
-        // Add instances of this new facility in the two other user interfaces
-        //FacilityMaintence.makeNew(facilityNumber);
-        //FacilityUse.makeNew(facilityNumber);
+        scan.nextLine();
+        System.out.println("Please explain the reason for your request:");
+        requestDescription = scan.nextLine();
 
-        facilities.put(facilityNumber, requestDescription);
-        System.out.println("Thank you, " + requestDescription + " has now been added!");
+        requests.put(facilityNumber, requestDescription);
+        System.out.println("Your submission has been added.  Here is what you typed: " + requestDescription);
     }
 
-    // Remove a facility
-    public void removeFacility() {
-        System.out.println("Please enter the number of the facility you would like to remove:");
-        facilityNumber = scan.nextInt();
-        facilities.remove(facilityNumber);
-        System.out.println("Facility number: " + facilityNumber + " has now been removed.");
-    }
-
-    // Print out a list of all current facilities
-    public void listFacilities() {
-        System.out.println(facilities);
+    // Print out a list of all current requests
+    public void listFacilityMaintRequest() {
+        System.out.println(requests);
     }
 
     // Client interface method
     public static void main(String[] args) {
         Scanner myScan = new Scanner(System.in);
-        Facility myFacility = new Facility();
+        FacilityMaintenance myFacilityMaintenance = new FacilityMaintenance();
 
-        System.out.println("Welcome to the Facility Manager.  What would you like to do?");
-        System.out.println("1) Add a facility.");
-        System.out.println("2) Remove a facility.");
-        System.out.println("3) List all facilities.");
+        System.out.println("Welcome to the Maintenance Manager.  What would you like to do?");
+        System.out.println("1) Make a maintenance request.");
+        System.out.println("2) List all maintenance requests.");
 
         int response = myScan.nextInt();
         switch(response) {
             case 1:
-                myFacility.addFacility();
+                myFacilityMaintenance.makeFacilityMaintRequest();
                 break;
             case 2:
-                myFacility.removeFacility();
-                break;
-            case 3:
-                myFacility.listFacilities();
+                myFacilityMaintenance.listFacilityMaintRequest();
                 break;
             default:
                 System.out.println("Error, incorrect input.");
