@@ -6,15 +6,15 @@ public class Facility {
     // Variable declarations
     private int facilityNumber;
     private String facilityName;
-    public static HashMap<int, String> facilities;
+    public static HashMap<Integer, String> facilities;
 
     Scanner scan = new Scanner(System.in);
 
     // Constructor to initialize class attributes
-    public Facility(facilityNumber, facilityName, facilities) {
+    public Facility() {
         facilityNumber = 0;
         facilityName = "";
-        facilities = new HashMap<int, String>();
+        facilities = new HashMap<Integer, String>();
     }
 
     // Add new facility
@@ -23,15 +23,15 @@ public class Facility {
         facilityName = scan.nextLine();
 
         System.out.println("Please enter the facility number:");
-        facilityNumber = scan.nextLine();
+        facilityNumber = scan.nextInt();
 
         // Add instances of this new facility in the two other user interfaces
-        FacilityMaintence.makeNew(facilityNumber);
-        FacilityUse.makeNew(facilityNumber);
+        //FacilityMaintence.makeNew(facilityNumber);
+        //FacilityUse.makeNew(facilityNumber);
 
         facilities.put(facilityNumber, facilityName);
-        System.out.println("Thank you, " + name + " has now been added!");
-        scanner.close();
+        System.out.println("Thank you, " + facilityName + " has now been added!");
+        scan.close();
     }
 
     // Remove a facility
@@ -46,24 +46,27 @@ public class Facility {
 
     // Client interface method
     public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        Facility myFacility = new Facility();
+
         System.out.println("Welcome to the Facility Manager.  What would you like to do?");
         System.out.println("1) Add a facility.");
         System.out.println("2) Remove a facility.");
         System.out.println("3) List all facilities.");
 
-        String response = scan.nextLine();
+        int response = scan.nextInt();
         switch(response) {
             case 1:
-                addFacility();
+                myFacility.addFacility();
                 break;
             case 2:
-                removeFacility();
+                myFacility.removeFacility();
                 break;
             case 3:
-                listFacilities();
+                myFacility.listFacilities();
                 break;
             default:
-                "Error, incorrect input.";
+                System.out.println("Error, incorrect input.");
                 break;
         }
 
