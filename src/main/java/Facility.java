@@ -35,7 +35,11 @@ public class Facility {
 
     // Remove a facility
     public void removeFacility() {
+        System.out.println("Please enter the number of the facility you would like to remove:");
+        facilityNumber = scan.nextInt();
         facilities.remove(facilityNumber);
+        System.out.println("Facility number: " + facilityNumber + " has now been removed.");
+        scan.close();
     }
 
     // Print out a list of all current facilities
