@@ -7,7 +7,6 @@ public class Facility {
     // Variable declarations
     private int facilityNumber;
     private String facilityName;
-    int size;
     public static HashMap<Integer, String> facilities;
 
     Scanner scan = new Scanner(System.in);
@@ -16,7 +15,6 @@ public class Facility {
     public Facility() {
         facilityNumber = 0;
         facilityName = "";
-        size = 0;
         facilities = new HashMap<Integer, String>();
     }
 
@@ -29,7 +27,6 @@ public class Facility {
         facilityNumber = scan.nextInt();
 
         facilities.put(facilityNumber, facilityName);
-        size++;
         System.out.println("Thank you, " + facilityName + " has now been added!");
     }
 
@@ -38,7 +35,6 @@ public class Facility {
         System.out.println("Please enter the number of the facility you would like to remove:");
         facilityNumber = scan.nextInt();
         facilities.remove(facilityNumber);
-        size--;
         System.out.println("facility.Facility number: " + facilityNumber + " has now been removed.");
     }
 
