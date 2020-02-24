@@ -63,7 +63,7 @@
 											"top": 551,
 											"width": 207,
 											"height": 13,
-											"text": "Facility Maintenance"
+											"text": "facility.Facility Maintenance"
 										},
 										{
 											"_type": "LabelView",
@@ -329,7 +329,7 @@
 											"top": 319,
 											"width": 183,
 											"height": 13,
-											"text": "Facility"
+											"text": "facility.Facility"
 										},
 										{
 											"_type": "LabelView",
@@ -629,7 +629,7 @@
 											"top": 567,
 											"width": 162.70947265625,
 											"height": 13,
-											"text": "Facility Use"
+											"text": "facility.Facility Use"
 										},
 										{
 											"_type": "LabelView",
@@ -2806,7 +2806,7 @@
 											"top": 351,
 											"width": 151,
 											"height": 13,
-											"text": "Facility Details"
+											"text": "facility.Facility Details"
 										},
 										{
 											"_type": "LabelView",
@@ -7176,7 +7176,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Facility Maintenance",
+					"name": "facility.Facility Maintenance",
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",
@@ -7305,7 +7305,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Facility",
+					"name": "facility.Facility",
 					"ownedElements": [
 						{
 							"_type": "UMLGeneralization",
@@ -7404,7 +7404,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Facility Use",
+					"name": "facility.Facility Use",
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",
@@ -8216,7 +8216,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Facility Details",
+					"name": "facility.Facility Details",
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",

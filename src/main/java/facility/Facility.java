@@ -1,3 +1,5 @@
+package facility;
+
 import java.util.*;
 
 
@@ -33,7 +35,7 @@ public class Facility {
         System.out.println("Please enter the number of the facility you would like to remove:");
         facilityNumber = scan.nextInt();
         facilities.remove(facilityNumber);
-        System.out.println("Facility number: " + facilityNumber + " has now been removed.");
+        System.out.println("facility.Facility number: " + facilityNumber + " has now been removed.");
     }
 
     // Print out a list of all current facilities
@@ -46,7 +48,7 @@ public class Facility {
         Scanner myScan = new Scanner(System.in);
         Facility myFacility = new Facility();
 
-        System.out.println("Welcome to the Facility Manager.  What would you like to do?");
+        System.out.println("Welcome to the facility.Facility Manager.  What would you like to do?");
         System.out.println("1) Add a facility.");
         System.out.println("2) Remove a facility.");
         System.out.println("3) List all facilities.");
