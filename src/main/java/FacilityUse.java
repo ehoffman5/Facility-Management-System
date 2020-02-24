@@ -1,66 +1,55 @@
 import java.util.*;
 
 
-public class Facility {
+public class FacilityUse {
     // Variable declarations
     private int facilityNumber;
-    private String facilityName;
-    public static HashMap<Integer, String> facilities;
+    private String purposeOfUse;
+    public static HashMap<Integer, String> reservations;
 
     Scanner scan = new Scanner(System.in);
 
     // Constructor to initialize class attributes
-    public Facility() {
+    public FacilityUse() {
         facilityNumber = 0;
-        facilityName = "";
-        facilities = new HashMap<Integer, String>();
+        purposeOfUse = "";
+        reservations = new HashMap<Integer, String>();
     }
 
-    // Add new facility
-    public void addFacility() {
-        System.out.println("Please enter the name of your facility:");
-        facilityName = scan.nextLine();
-
+    // Make new facility reservation
+    public void assignFacilityToUse() {
         System.out.println("Please enter the facility number:");
         facilityNumber = scan.nextInt();
 
-        facilities.put(facilityNumber, facilityName);
-        System.out.println("Thank you, " + facilityName + " has now been added!");
+        scan.nextLine();
+        System.out.println("Please explain the purpose of your reservation:");
+        purposeOfUse = scan.nextLine();
+
+        reservations.put(facilityNumber, purposeOfUse);
+        System.out.println("Your submission has been added.  Here is what you typed: " + purposeOfUse);
     }
 
-    // Remove a facility
-    public void removeFacility() {
-        System.out.println("Please enter the number of the facility you would like to remove:");
-        facilityNumber = scan.nextInt();
-        facilities.remove(facilityNumber);
-        System.out.println("Facility number: " + facilityNumber + " has now been removed.");
-    }
-
-    // Print out a list of all current facilities
-    public void listFacilities() {
-        System.out.println(facilities);
+    // Print out a list of all current reservations
+    public void listReservations() {
+        System.out.println(reservations);
     }
 
     // Client interface method
     public static void main(String[] args) {
         Scanner myScan = new Scanner(System.in);
-        Facility myFacility = new Facility();
+        FacilityUse myFacilityUse = new FacilityUse();
 
-        System.out.println("Welcome to the Facility Manager.  What would you like to do?");
-        System.out.println("1) Add a facility.");
-        System.out.println("2) Remove a facility.");
-        System.out.println("3) List all facilities.");
+        System.out.println("Welcome to the Reservation Manager.  What would you like to do?");
+        System.out.println("1) Make a reservation.");
+        System.out.println("2) List all reservations.");
 
         int response = myScan.nextInt();
         switch(response) {
             case 1:
-                myFacility.addFacility();
+                myFacilityUse.assignFacilityToUse();
                 break;
             case 2:
-                myFacility.removeFacility();
-                break;
-            case 3:
-                myFacility.listFacilities();
+                myFacilityUse.listReservations();
                 break;
             default:
                 System.out.println("Error, incorrect input.");
