@@ -1,4 +1,3 @@
-import java.util.Scanner;
 import java.util.*;
 
 
@@ -46,7 +45,7 @@ public class Facility {
 
     // Client interface method
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
+        Scanner myScan = new Scanner(System.in);
         Facility myFacility = new Facility();
 
         System.out.println("Welcome to the Facility Manager.  What would you like to do?");
@@ -54,7 +53,7 @@ public class Facility {
         System.out.println("2) Remove a facility.");
         System.out.println("3) List all facilities.");
 
-        int response = scan.nextInt();
+        int response = myScan.nextInt();
         switch(response) {
             case 1:
                 myFacility.addFacility();
