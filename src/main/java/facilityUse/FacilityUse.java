@@ -18,9 +18,9 @@ public class FacilityUse {
         reservations = new HashMap<Integer, String>();
     }
 
-    // Make new facility reservation
+    // Make new facilityBase reservation
     public void assignFacilityToUse() {
-        System.out.println("Please enter the facility number:");
+        System.out.println("Please enter the facilityBase number:");
         facilityNumber = scan.nextInt();
 
         scan.nextLine();

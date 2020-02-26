@@ -20,7 +20,7 @@ public class FacilityMaintenance {
 
     // Method for submitting a new request
     public void makeFacilityMaintRequest() {
-        System.out.println("Please enter the facility number:");
+        System.out.println("Please enter the facilityBase number:");
         facilityNumber = scan.nextInt();
 
         scan.nextLine();

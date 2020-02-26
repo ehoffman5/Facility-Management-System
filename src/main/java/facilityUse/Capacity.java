@@ -13,17 +13,17 @@ public class Capacity {
         isFull = false;
     }
 
-    // Function for emptying all occupants from a facility
+    // Function for emptying all occupants from a facilityBase
     public void vacateFacility() {
 
     }
 
-    // Function for listing all current occupants in a facility
+    // Function for listing all current occupants in a facilityBase
     public void listOccupants() {
 
     }
 
-    // Function for displaying the available capacity for a given facility
+    // Function for displaying the available capacity for a given facilityBase
     public void requestAvailableCapacity() {
 
     }
