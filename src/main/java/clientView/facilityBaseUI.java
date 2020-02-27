@@ -3,13 +3,22 @@ package clientView;
 import facilityBase.Facility;
 import facilityBase.FacilityDetails;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class facilityBaseUI {
-    // Client interface method
     public static void main(String[] args) {
-        FacilityDetails x = new FacilityDetails();
-        FacilityDetails y = new FacilityDetails();
+
+        ArrayList<String> myDetailsX = new ArrayList<String>();
+        ArrayList<String> myDetailsY = new ArrayList<String>();
+        FacilityDetails x = new FacilityDetails(myDetailsX);
+        FacilityDetails y = new FacilityDetails(myDetailsY);
+
+        x.addFacilityDetails("Damen", "800-888-9999");
+        y.addFacilityDetails("Cuneo", "800-777-8888");
+        x.getFacilityInformation();
+        y.getFacilityInformation();
+
         HashMap<Integer, FacilityDetails> myFacilities =  new HashMap<Integer, FacilityDetails>();
         Facility obj = new Facility(myFacilities);
 
