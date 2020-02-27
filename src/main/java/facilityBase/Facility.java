@@ -2,8 +2,8 @@ package facilityBase;
 
 import java.util.*;
 
-// remove this comment
 public class Facility {
+
     // Variable declarations
     private int facilityNumber;
     private FacilityDetails facilityDetail;
@@ -14,7 +14,8 @@ public class Facility {
         this.facilities = new HashMap<Integer, FacilityDetails>();
     }
 
-    // ---------- Getter and Setter Methods ----------
+
+    // ---------- Getter and Setter Methods ---------- //
     public void setFacilityNumber(int facilityNumber) {
         this.facilityNumber = facilityNumber;
     }
@@ -31,13 +32,14 @@ public class Facility {
         return facilityDetail;
     }
 
-    // ---------- CRUD Methods ----------
-    // Add new facilityBase
+
+    // ---------- CRUD Methods ---------- //
+    // Add new facility
     public void addFacility(int facilityNumber, FacilityDetails facilityDetail) {
         facilities.put(facilityNumber, facilityDetail);
     }
 
-    // Remove a facilityBase
+    // Remove a facility
     public void removeFacility(int facilityNumber) {
         facilities.remove(facilityNumber);
     }
@@ -45,18 +47,5 @@ public class Facility {
     // Print out a list of all current facilities
     public void listFacilities() {
         System.out.println(facilities);
-    }
-
-    // Client interface method
-    public static void main(String[] args) {
-        FacilityDetails x = new FacilityDetails();
-        FacilityDetails y = new FacilityDetails();
-        HashMap<Integer, FacilityDetails> myFacilities =  new HashMap<Integer, FacilityDetails>();
-        Facility obj = new Facility(myFacilities);
-
-        obj.addFacility(100, x);
-        obj.addFacility(200, y);
-        obj.removeFacility(100);
-        obj.listFacilities();
     }
 }
