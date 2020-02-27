@@ -6,7 +6,7 @@ import facilityBase.FacilityDetails;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class facilityBaseUI {
+public class FacilityBaseUI {
     public static void main(String[] args) {
 
         ArrayList<String> myDetailsX = new ArrayList<String>();
