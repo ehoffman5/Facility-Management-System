@@ -4,59 +4,55 @@ import java.util.*;
 
 
 public class FacilityUse {
-    // Variable declarations
-    private int facilityNumber;
-    private String purposeOfUse;
-    public static HashMap<Integer, String> reservations;
 
-    Scanner scan = new Scanner(System.in);
+    // Variable declarations
+    private String purposeOfUse;
+    private String startDate;
+    private String endDate;
 
     // Constructor to initialize class attributes
     public FacilityUse() {
-        facilityNumber = 0;
-        purposeOfUse = "";
-        reservations = new HashMap<Integer, String>();
     }
+
+
+    // ---------- Getter and Setter Methods ---------- //
+    public void setPurposeOfUse(String purposeOfUse) {
+        this.purposeOfUse = purposeOfUse;
+    }
+
+    public String getPurposeOfUse() {
+        return purposeOfUse;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+
 
     // Make new facilityBase reservation
     public void assignFacilityToUse() {
-        System.out.println("Please enter the facilityBase number:");
-        facilityNumber = scan.nextInt();
-
-        scan.nextLine();
-        System.out.println("Please explain the purpose of your reservation:");
-        purposeOfUse = scan.nextLine();
-
-        reservations.put(facilityNumber, purposeOfUse);
-        System.out.println("Your submission has been added.  Here is what you typed: " + purposeOfUse);
     }
 
     // Print out a list of all current reservations
     public void listReservations() {
-        System.out.println(reservations);
+        System.out.println();
     }
 
-    // Client interface method
-    public static void main(String[] args) {
-        Scanner myScan = new Scanner(System.in);
-        FacilityUse myFacilityUse = new FacilityUse();
-
-        System.out.println("Welcome to the Reservation Manager.  What would you like to do?");
-        System.out.println("1) Make a reservation.");
-        System.out.println("2) List all reservations.");
-
-        int response = myScan.nextInt();
-        switch(response) {
-            case 1:
-                myFacilityUse.assignFacilityToUse();
-                break;
-            case 2:
-                myFacilityUse.listReservations();
-                break;
-            default:
-                System.out.println("Error, incorrect input.");
-                break;
-        }
+    // Check to see if a facility is in use
+    public void isInUseDuringInterval() {
     }
 
 }

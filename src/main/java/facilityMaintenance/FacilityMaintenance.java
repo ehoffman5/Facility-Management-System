@@ -42,4 +42,10 @@ public class FacilityMaintenance {
     public void listFacilityMaintRequests() {
         System.out.println(requests);
     }
+
+    // Method for setting request to an active order
+    public void scheduleMaintenance() { }
+
+    // Prints out a list of all active maintenance orders
+    public void listMaintenance() { }
 }
