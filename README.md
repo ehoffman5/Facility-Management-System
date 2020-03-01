@@ -4,3 +4,6 @@ Systems Requirement Document for this project can be found at: https://docs.goog
 ### Instructions for running this program:
 As the Heroku environment has a bug in it that does not allow for cloud deployment, this program should currently be run locally.
 To run this program, clone the repository onto your machine.  Open it in an IDE like IntelliJ.  Then run the main class files (Facility, FacilityMaintenance, and FacilityUsage) with the Maven build tool.
+
+### References
+Utilized this repository to reference database connection code: https://github.com/csoulakian/Facility-Management-System-Java
