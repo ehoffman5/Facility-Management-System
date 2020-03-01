@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* facility.Facility
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* facilityBase.Facility
