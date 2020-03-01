@@ -48,7 +48,7 @@ public class FacilityUse {
 
     // Print out a list of all current reservations
     public void listReservations() {
-        System.out.println();
+
     }
 
     // Check to see if a facility is in use

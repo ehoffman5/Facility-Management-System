@@ -7,12 +7,9 @@ public class FacilityDetails {
     // Variable declarations
     private String facilityName;
     private String facilityPhoneNo;
-    public static ArrayList<String> details;
 
     // Constructor to initialize class attributes
-    public FacilityDetails(ArrayList<String> details) {
-        this.details = new ArrayList<String>();
-    }
+    public FacilityDetails() { }
 
 
     // ---------- Getter and Setter Methods ---------- //
@@ -34,13 +31,10 @@ public class FacilityDetails {
 
     // ---------- CRUD Methods ---------- //
     // Function for reading details
-    public void addFacilityDetails(String facilityName, String facilityPhoneNo) {
-        details.add(facilityName);
-        details.add(facilityPhoneNo);
+    public void addFacilityDetails() {
     }
 
     // Function for modifying details
     public void getFacilityInformation() {
-        System.out.println(details);
     }
 }

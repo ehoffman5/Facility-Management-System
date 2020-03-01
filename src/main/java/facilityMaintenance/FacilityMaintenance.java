@@ -7,11 +7,9 @@ public class FacilityMaintenance {
     // Variable declarations
     private float cost;
     private String maintRequestDescription;
-    public static HashMap<String, Float> requests;
 
     // Constructor to initialize class attributes
     public FacilityMaintenance() {
-        requests = new HashMap<String, Float>();
     }
 
 
@@ -35,12 +33,12 @@ public class FacilityMaintenance {
 
     // Method for submitting a new request
     public void makeFacilityMaintRequest() {
-        requests.put(maintRequestDescription, cost);
+
     }
 
     // Print out a list of all current requests
     public void listFacilityMaintRequests() {
-        System.out.println(requests);
+
     }
 
     // Method for setting request to an active order
