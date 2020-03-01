@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* facilityBase.Facility
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* clientView.FacilityBaseUI
