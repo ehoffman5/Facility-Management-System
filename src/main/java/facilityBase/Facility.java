@@ -164,12 +164,12 @@ public class Facility {
             String removeFacilityDetailQuery = "delete from FacilityDetail where facility_number = '" + facilityNumber + "'";
             st.execute(removeFacilityDetailQuery);
 
-            System.out.println("FacilityDAO: *************** Query " + removeFacilityDetailQuery + "\n");
+            System.out.println("Facility: *************** Query " + removeFacilityDetailQuery + "\n");
             //close to manage resources
             st.close();
         }
         catch (SQLException se) {
-            System.err.println("FacilityDAO: Threw a SQLException removing the Facility Detail from FacilityDetail table.");
+            System.err.println("Facility: Threw a SQLException removing the Facility Detail from FacilityDetail table.");
             System.err.println(se.getMessage());
             se.printStackTrace();
         }
@@ -180,12 +180,12 @@ public class Facility {
             String removeFacilityQuery = "delete from facility where facility_number = '" + facilityNumber + "'";
             st.execute(removeFacilityQuery);
 
-            System.out.println("FacilityDAO: *************** Query " + removeFacilityQuery + "\n");
+            System.out.println("Facility: *************** Query " + removeFacilityQuery + "\n");
             //close to manage resources
             st.close();
         }
         catch (SQLException se) {
-            System.err.println("FacilityDAO: Threw a SQLException removing the Facility object from Facility table.");
+            System.err.println("Facility: Threw a SQLException removing the Facility object from Facility table.");
             System.err.println(se.getMessage());
             se.printStackTrace();
         }
@@ -202,7 +202,7 @@ public class Facility {
             String getAllFacilitiesQuery = "SELECT * FROM facility";
 
             ResultSet facRS = st.executeQuery(getAllFacilitiesQuery);
-            System.out.println("FacilityDAO: *************** Query " + getAllFacilitiesQuery + "\n");
+            System.out.println("Facility: *************** Query " + getAllFacilitiesQuery + "\n");
 
             Facility fac1 = new Facility();
             while ( facRS.next() ) {
@@ -218,7 +218,7 @@ public class Facility {
 
         }
         catch (SQLException se) {
-            System.err.println("FacilityDAO: Threw a SQLException retrieving list of facilities.");
+            System.err.println("Facility: Threw a SQLException retrieving list of facilities.");
             System.err.println(se.getMessage());
             se.printStackTrace();
         }
