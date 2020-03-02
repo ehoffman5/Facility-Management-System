@@ -1,6 +1,6 @@
 package facilityUse;
 
-public class Usage {
+public class Usage extends FacilityUse {
 
     public void listActualUsage() {
 

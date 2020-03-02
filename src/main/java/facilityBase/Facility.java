@@ -1,7 +1,7 @@
 package facilityBase;
 
 import database.DBConnector;
-
+import facilityBase.FacilityDetails;
 import java.sql.*;
 import java.util.*;
 
@@ -54,7 +54,7 @@ public class Facility {
             // addPst.setString(1, facility.getFacilityDetails().getName());
             addPst.setInt(2, facility.getFacilityDetails().getFacilityNumber());
             addPst.setString(3, facility.getFacilityDetails().getFacilityName());
-            if (facility.getFacilityDetails().getFacilityPhoneNo() != null) {
+            if (facility.getFacilityDetails().getFacilityPhoneNo() != null) {  // TODO: Set all fields to NOT NULL
                 addPst.setString(4, facility.getFacilityDetails().getFacilityPhoneNo());
             } else {
                 addPst.setNull(4, Types.VARCHAR);
