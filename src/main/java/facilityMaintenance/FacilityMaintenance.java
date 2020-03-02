@@ -41,13 +41,13 @@ public class FacilityMaintenance extends Facility {
             FacilityMaintenance maint = new FacilityMaintenance();
             maint.setMaintRequestDescription(maintenanceDescription);
             maint.setCost(cost);
-            maint.setFacilityNumber(fac.getFacilityNumber());  // TODO: look into maintenance FacilityID
+            maint.setFacilityNumber(fac.getFacilityNumber());
 
             Statement st = DBConnector.getConnection().createStatement();
-            String makeMaintRequestQuery = "INSERT INTO maint_request (facility_id, details, cost) VALUES (" +
-                    fac.getFacilityNumber() + ", '" + maintenanceDescription + "', " + cost + ")";
+            String makeMaintRequestQuery = "INSERT INTO MaintenanceRequests (facility_id, cost, description) VALUES (" +
+                    fac.getFacilityNumber() + ", '" + cost + "', " + maintenanceDescription + ")";
             st.execute(makeMaintRequestQuery);
-            System.out.println("MaintenanceDAO: *************** Query " + makeMaintRequestQuery + "\n");
+            System.out.println("Maintenance: *************** Query " + makeMaintRequestQuery + "\n");
 
             //close to manage resources
             st.close();
@@ -56,7 +56,7 @@ public class FacilityMaintenance extends Facility {
 
         }
         catch (SQLException se) {
-            System.err.println("MaintenanceDAO: Threw a SQLException making a maintenance request.");
+            System.err.println("Maintenance: Threw a SQLException making a maintenance request.");
             System.err.println(se.getMessage());
             se.printStackTrace();
         }
@@ -72,11 +72,11 @@ public class FacilityMaintenance extends Facility {
         try {
 
             Statement st = DBConnector.getConnection().createStatement();
-            String listMaintRequestsQuery = "SELECT * FROM maint_request WHERE facility_number = '" +
+            String listMaintRequestsQuery = "SELECT * FROM MaintenanceRequests WHERE facility_number = '" +
                     fac.getFacilityNumber() + "' ORDER BY cost";
 
             ResultSet maintRS = st.executeQuery(listMaintRequestsQuery);
-            System.out.println("UseDAO: *************** Query " + listMaintRequestsQuery + "\n");
+            System.out.println("Maintenance: *************** Query " + listMaintRequestsQuery + "\n");
 
             while ( maintRS.next() ) {
                 FacilityMaintenance maintenanceRequest = new FacilityMaintenance();
@@ -92,8 +92,8 @@ public class FacilityMaintenance extends Facility {
 
         }
         catch (SQLException se) {
-            System.err.println("UseDAO: Threw a SQLException retreiving list of maintenance "
-                    + "requests from maint_request table.");
+            System.err.println("Maintenance: Threw a SQLException retrieving list of maintenance "
+                    + "requests from MaintenanceRequest table.");
             System.err.println(se.getMessage());
             se.printStackTrace();
         }
@@ -104,42 +104,42 @@ public class FacilityMaintenance extends Facility {
     // Method for setting request to an active order
     public void scheduleMaintenance(FacilityMaintenance maintRequest) {
 
-        try {
+        try {  // add to ActiveMaintenance
 
             Statement st = DBConnector.getConnection().createStatement();
-            String scheduleMaintenanceAddQuery = "INSERT INTO maintenance (facility_id, details, cost) VALUES (" +
-                    maintRequest.getFacilityNumber() + ", '" + maintRequest.getMaintRequestDescription() +
-                    "', " + maintRequest.getCost() + ")";
+            String scheduleMaintenanceAddQuery = "INSERT INTO ActiveMaintenance (facility_number, cost, description) VALUES (" +
+                    maintRequest.getFacilityNumber() + ", '" + maintRequest.getCost() +
+                    "', " + maintRequest.getMaintRequestDescription() + ")";
             st.execute(scheduleMaintenanceAddQuery);
-            System.out.println("MaintenanceDAO: *************** Query " + scheduleMaintenanceAddQuery + "\n");
+            System.out.println("Maintenance: *************** Query " + scheduleMaintenanceAddQuery + "\n");
 
             //close to manage resources
             st.close();
 
         }
         catch (SQLException se) {
-            System.err.println("MaintenanceDAO: Threw a SQLException adding a maintenance "
+            System.err.println("Maintenance: Threw a SQLException adding a ActiveMaintenance "
                     + "request to maintenance table.");
             System.err.println(se.getMessage());
             se.printStackTrace();
         }
 
-        try {
+        try {  // remove from MaintenanceRequests
 
             Statement st = DBConnector.getConnection().createStatement();
-            String scheduleMaintenanceRemoveQuery = "DELETE FROM maint_request WHERE facility_id = " +
+            String scheduleMaintenanceRemoveQuery = "DELETE FROM MaintenanceRequests WHERE facility_number = " +
                     maintRequest.getFacilityNumber() + " AND description = '" + maintRequest.getMaintRequestDescription() +
                     "' AND cost = " + maintRequest.getCost();
             st.execute(scheduleMaintenanceRemoveQuery);
-            System.out.println("MaintenanceDAO: *************** Query " + scheduleMaintenanceRemoveQuery + "\n");
+            System.out.println("Maintenance: *************** Query " + scheduleMaintenanceRemoveQuery + "\n");
 
             //close to manage resources
             st.close();
 
         }
         catch (SQLException se) {
-            System.err.println("MaintenanceDAO: Threw a SQLException removing a "
-                    + "maintenance request from maint_request table.");
+            System.err.println("Maintenance: Threw a SQLException removing a "
+                    + "maintenance request from MaintenanceRequests table.");
             System.err.println(se.getMessage());
             se.printStackTrace();
         }
@@ -152,11 +152,11 @@ public class FacilityMaintenance extends Facility {
         try {
 
             Statement st = DBConnector.getConnection().createStatement();
-            String listMaintenanceQuery = "SELECT * FROM maintenance WHERE facility_number = '" +
+            String listMaintenanceQuery = "SELECT * FROM ActiveMaintenance WHERE facility_number = '" +
                     fac.getFacilityNumber() + "' ORDER BY cost";
 
             ResultSet maintRS = st.executeQuery(listMaintenanceQuery);
-            System.out.println("UseDAO: *************** Query " + listMaintenanceQuery + "\n");
+            System.out.println("Maintenance: *************** Query " + listMaintenanceQuery + "\n");
 
             while ( maintRS.next() ) {
                 FacilityMaintenance maintenance = new FacilityMaintenance();
@@ -172,8 +172,8 @@ public class FacilityMaintenance extends Facility {
 
         }
         catch (SQLException se) {
-            System.err.println("UseDAO: Threw a SQLException retreiving list of maintenance "
-                    + "from maintenanace table.");
+            System.err.println("Maintenance: Threw a SQLException retrieving list of maintenance "
+                    + "from ActiveMaintenance table.");
             System.err.println(se.getMessage());
             se.printStackTrace();
         }

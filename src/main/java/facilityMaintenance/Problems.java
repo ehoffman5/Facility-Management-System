@@ -1,34 +1,37 @@
 package facilityMaintenance;
 
 import facilityBase.Facility;
+import facilityUse.FacilityUse;
+
 import java.util.*;
 import java.sql.*;
+import java.time.*;
+// import java.time.temporal.chronounit;
 
 public class Problems extends FacilityMaintenance {
 /*
     // Function for calculating the ratio of problems a specific facility causes
     public double calcProblemRateForFacility(Facility fac) {
-        UseService useService = new UseService();
+        FacilityUse useService = new FacilityUse();
         try {
-            LocalDate facilityStartDate = useService.getFacilityStartDate(fac);
+            LocalDate facilityStartDate = useService.getStartDate(fac);
             double totalDays = ChronoUnit.DAYS.between(facilityStartDate, LocalDate.now());
             return calcDownTimeForFacility(fac) / totalDays;
         } catch (Exception se) {
-            System.err.println("MaintenanceService: Threw an Exception calculating "
+            System.err.println("Maintenance: Threw an Exception calculating "
                     + "the down time for a facility.");
             System.err.println(se.getMessage());
         }
 
         return 0;
-    }
-    }
+    } */  // TODO: fix problem rate method
 
     // Function to list all problem requests
     public List<FacilityMaintenance> listFacilityProblems(Facility fac) {
         List<FacilityMaintenance> facilityProblems = new ArrayList<FacilityMaintenance>();
         try {
-            facilityProblems.addAll(FacilityMaintenance.listFacilityMaintRequests(fac));  // TODO: fix this
-            facilityProblems.addAll(FacilityMaintenance.listMaintenance(fac));
+            // facilityProblems.addAll(FacilityMaintenance.listFacilityMaintRequests(fac));  // TODO: fix static context
+            // facilityProblems.addAll(FacilityMaintenance.listMaintenance(fac));
 
             //sort problems by cost
             Collections.sort(facilityProblems, new Comparator<FacilityMaintenance>() {
@@ -40,12 +43,12 @@ public class Problems extends FacilityMaintenance {
 
             return facilityProblems;
         } catch (Exception se) {
-            System.err.println("MaintenanceService: Threw an Exception "
+            System.err.println("Maintenance: Threw an Exception "
                     + "listing all facility problems.");
             System.err.println(se.getMessage());
         }
         return null;
     }
 
-    */
+
 }

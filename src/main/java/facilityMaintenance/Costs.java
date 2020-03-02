@@ -15,14 +15,14 @@ public class Costs extends FacilityMaintenance {
             int totalCost = 0;
 
             Statement st = DBConnector.getConnection().createStatement();
-            String calcMaintenanceCostQuery = "SELECT SUM(cost) FROM maintenance "
-                    + "WHERE facility_id = " + fac.getFacilityNumber();
+            String calcMaintenanceCostQuery = "SELECT SUM(cost) FROM ActiveMaintenance "
+                    + "WHERE facility_number = " + fac.getFacilityNumber();
             ResultSet maintRS = st.executeQuery(calcMaintenanceCostQuery);
 
             while ( maintRS.next() ) {
                 totalCost = maintRS.getInt(1);
             }
-            System.out.println("MaintenanceDAO: *************** Query " + calcMaintenanceCostQuery + "\n");
+            System.out.println("Maintenance: *************** Query " + calcMaintenanceCostQuery + "\n");
 
             //close to manage resources
             maintRS.close();
@@ -32,8 +32,8 @@ public class Costs extends FacilityMaintenance {
 
         }
         catch (SQLException se) {
-            System.err.println("MaintenanceDAO: Threw a SQLException calculating total "
-                    + "maintenance cost from maintenance table.");
+            System.err.println("Maintenance: Threw a SQLException calculating total "
+                    + "maintenance cost from ActiveMaintenance table.");
             System.err.println(se.getMessage());
             se.printStackTrace();
         }
