@@ -34,21 +34,20 @@ public class FacilityDetails extends Facility {
 
     // ---------- CRUD Methods ---------- //
     // Function for reading details
-    // TODO: Customize this to fit the FacilityDetail table
-    public void addFacilityDetails(int ID, int phoneNumber) {
+    public void addFacilityDetails(int facilityNumber, int facilityPhoneNo, String facilityName) {
         try {
             Connection con = DBConnector.getConnection();
             PreparedStatement facPst = null;
             //Get Facility
 
-            String updateFacilityDetailQuery = "UPDATE facility_detail SET phone = ? WHERE facility_id = ?";
+            String updateFacilityDetailQuery = "UPDATE FacilityDetails SET phone_number = ? WHERE facility_number = ?";
 
             facPst = con.prepareStatement(updateFacilityDetailQuery);
-            facPst.setInt(1, phoneNumber);
-            facPst.setInt(2, ID);
+            facPst.setInt(1, facilityPhoneNo);
+            facPst.setInt(2, facilityNumber);
             facPst.executeUpdate();
 
-            System.out.println("FacilityDAO: *************** Query " + updateFacilityDetailQuery + "\n");
+            System.out.println("Facility: *************** Query " + updateFacilityDetailQuery + "\n");
 
             //close to manage resources
             facPst.close();
@@ -56,7 +55,32 @@ public class FacilityDetails extends Facility {
 
         }
         catch (SQLException se) {
-            System.err.println("FacilityDAO: Threw a SQLException updating the phone number in Facility Detail table.");
+            System.err.println("Facility: Threw a SQLException updating the phone number in FacilityDetail table.");
+            System.err.println(se.getMessage());
+            se.printStackTrace();
+        }
+
+        try {
+            Connection con = DBConnector.getConnection();
+            PreparedStatement facPst = null;
+            //Get Facility
+
+            String updateFacilityDetailQuery = "UPDATE FacilityDetails SET facility_name = ? WHERE facility_number = ?";
+
+            facPst = con.prepareStatement(updateFacilityDetailQuery);
+            facPst.setString(1, facilityName);
+            facPst.setInt(2, facilityNumber);
+            facPst.executeUpdate();
+
+            System.out.println("Facility: *************** Query " + updateFacilityDetailQuery + "\n");
+
+            //close to manage resources
+            facPst.close();
+            con.close();
+
+        }
+        catch (SQLException se) {
+            System.err.println("Facility: Threw a SQLException updating the facility name in FacilityDetail table.");
             System.err.println(se.getMessage());
             se.printStackTrace();
         }
@@ -72,19 +96,16 @@ public class FacilityDetails extends Facility {
 
             //Get details about facility
             Statement st = DBConnector.getConnection().createStatement();
-            String selectDetailQuery = "SELECT name,facility_id,number_of_rooms,phone FROM facility_detail WHERE facility_id = '" + facility_number + "'";
+            String selectDetailQuery = "SELECT facility_number,facility_name,phone_number FROM FacilityDetails WHERE facility_number = '" + facility_number + "'";
             ResultSet detRS = st.executeQuery(selectDetailQuery);
             FacilityDetails detail = new FacilityDetails();
 
-            System.out.println("FacilityDAO: *************** Query " + selectDetailQuery + "\n");
+            System.out.println("Facility: *************** Query " + selectDetailQuery + "\n");
 
             while ( detRS.next() ) {
-                detail.setFacilityName(detRS.getString("facility_name"));
                 detail.setFacilityNumber(detRS.getInt("facility_number"));
-                //detail.setNumberOfRooms(detRS.getInt("number_of_rooms"));
-                if (detRS.getString("phone_number") != null) {
-                    detail.setFacilityPhoneNo(detRS.getString("phone_number"));
-                }
+                detail.setFacilityName(detRS.getString("facility_name"));
+                detail.setFacilityPhoneNo(detRS.getString("phone_number"));
             }
 
             fac1.setFacilityDetails(detail);
@@ -96,7 +117,7 @@ public class FacilityDetails extends Facility {
         }
 
         catch (SQLException se) {
-            System.err.println("FacilityDAO: Threw a SQLException retrieving the Facility object.");
+            System.err.println("Facility: Threw a SQLException retrieving the Facility object.");
             System.err.println(se.getMessage());
             se.printStackTrace();
         }

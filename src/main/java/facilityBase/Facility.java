@@ -35,30 +35,25 @@ public class Facility {
 
     // ---------- Functionality Methods ---------- //
     // Add new facility
-    // TODO: Automate primary key (details_id)
     public void addFacility(Facility facility) {
         Connection con = DBConnector.getConnection();
         PreparedStatement facPst = null;
         PreparedStatement addPst = null;
 
         try {
-            //Insert the facility object
-            String facStm = "INSERT INTO facility(id) VALUES(?)";
+            //Insert the Facility object
+            String facStm = "INSERT INTO facility(facility_number) VALUES(?)";
             facPst = con.prepareStatement(facStm);
             facPst.setInt(1, facility.getFacilityNumber());
             facPst.executeUpdate();
 
-            //Insert the facility_detail object
-            String addStm = "INSERT INTO facility_detail(name, facility_id, number_of_rooms, phone) VALUES(?, ?, ?, ?)";
+            //Insert the FacilityDetail object
+            String addStm = "INSERT INTO facility_detail(details_id, facility_number, facility_name, phone_number) VALUES(?, ?, ?, ?)";
             addPst = con.prepareStatement(addStm);
-            // addPst.setString(1, facility.getFacilityDetails().getName());
+            //addPst.setString(1, facility.getFacilityDetails().getName());  // TODO: Automate primary key (details_id)??
             addPst.setInt(2, facility.getFacilityDetails().getFacilityNumber());
             addPst.setString(3, facility.getFacilityDetails().getFacilityName());
-            if (facility.getFacilityDetails().getFacilityPhoneNo() != null) {  // TODO: Set all fields to NOT NULL
-                addPst.setString(4, facility.getFacilityDetails().getFacilityPhoneNo());
-            } else {
-                addPst.setNull(4, Types.VARCHAR);
-            }
+            addPst.setString(4, facility.getFacilityDetails().getFacilityPhoneNo());
             addPst.executeUpdate();
         } catch (SQLException ex) {
 
@@ -74,36 +69,99 @@ public class Facility {
                 }
 
             } catch (SQLException ex) {
-                System.err.println("FacilityDAO: Threw a SQLException saving the facility object.");
+                System.err.println("Facility: Threw a SQLException saving the facility object.");
                 System.err.println(ex.getMessage());
             }
         }
     }
 
     // Remove a facility
-    // TODO: Should remove all references from all tables
     public void removeFacility(int facilityNumber) {
 
         try {
-            //remove from use table
+            //remove from FacilityUse table
             Statement st = DBConnector.getConnection().createStatement();
-            String removeFacilityUseQuery = "delete from use where facility_number = '" + facilityNumber + "'";
+            String removeFacilityUseQuery = "delete from FacilityUse where facility_number = '" + facilityNumber + "'";
             st.execute(removeFacilityUseQuery);
 
-            System.out.println("FacilityDAO: *************** Query " + removeFacilityUseQuery + "\n");
+            System.out.println("Facility: *************** Query " + removeFacilityUseQuery + "\n");
             //close to manage resources
             st.close();
         }
         catch (SQLException se) {
-            System.err.println("FacilityDAO: Threw a SQLException removing the Facility from Use table.");
+            System.err.println("Facility: Threw a SQLException removing the Facility from FacilityUse table.");
             System.err.println(se.getMessage());
             se.printStackTrace();
         }
 
         try {
-            //remove from facility_detail table
+            //remove from Inspections table
             Statement st = DBConnector.getConnection().createStatement();
-            String removeFacilityDetailQuery = "delete from facility_detail where facility_number = '" + facilityNumber + "'";
+            String removeInspectionsQuery = "delete from Inspections where facility_number = '" + facilityNumber + "'";
+            st.execute(removeInspectionsQuery);
+
+            System.out.println("Facility: *************** Query " + removeInspectionsQuery + "\n");
+            //close to manage resources
+            st.close();
+        }
+        catch (SQLException se) {
+            System.err.println("Facility: Threw a SQLException removing the Facility from Inspections table.");
+            System.err.println(se.getMessage());
+            se.printStackTrace();
+        }
+
+        try {
+            //remove from MaintenanceRequests table
+            Statement st = DBConnector.getConnection().createStatement();
+            String removeMaintenanceRequestsQuery = "delete from MaintenanceRequests where facility_number = '" + facilityNumber + "'";
+            st.execute(removeMaintenanceRequestsQuery);
+
+            System.out.println("Facility: *************** Query " + removeMaintenanceRequestsQuery + "\n");
+            //close to manage resources
+            st.close();
+        }
+        catch (SQLException se) {
+            System.err.println("Facility: Threw a SQLException removing the Facility from MaintenanceRequests table.");
+            System.err.println(se.getMessage());
+            se.printStackTrace();
+        }
+
+        try {
+            //remove from ActiveMaintenance table
+            Statement st = DBConnector.getConnection().createStatement();
+            String removeActiveMaintenanceQuery = "delete from ActiveMaintenance where facility_number = '" + facilityNumber + "'";
+            st.execute(removeActiveMaintenanceQuery);
+
+            System.out.println("Facility: *************** Query " + removeActiveMaintenanceQuery + "\n");
+            //close to manage resources
+            st.close();
+        }
+        catch (SQLException se) {
+            System.err.println("Facility: Threw a SQLException removing the Facility from ActiveMaintenance table.");
+            System.err.println(se.getMessage());
+            se.printStackTrace();
+        }
+
+        try {
+            //remove from FacilityCapacity table
+            Statement st = DBConnector.getConnection().createStatement();
+            String removeFacilityCapacityQuery = "delete from FacilityCapacity where facility_number = '" + facilityNumber + "'";
+            st.execute(removeFacilityCapacityQuery);
+
+            System.out.println("Facility: *************** Query " + removeFacilityCapacityQuery + "\n");
+            //close to manage resources
+            st.close();
+        }
+        catch (SQLException se) {
+            System.err.println("Facility: Threw a SQLException removing the Facility from FacilityCapacity table.");
+            System.err.println(se.getMessage());
+            se.printStackTrace();
+        }
+
+        try {
+            //remove from FacilityDetail table
+            Statement st = DBConnector.getConnection().createStatement();
+            String removeFacilityDetailQuery = "delete from FacilityDetail where facility_number = '" + facilityNumber + "'";
             st.execute(removeFacilityDetailQuery);
 
             System.out.println("FacilityDAO: *************** Query " + removeFacilityDetailQuery + "\n");
@@ -111,13 +169,13 @@ public class Facility {
             st.close();
         }
         catch (SQLException se) {
-            System.err.println("FacilityDAO: Threw a SQLException removing the Facility Detail from Facility Detail table.");
+            System.err.println("FacilityDAO: Threw a SQLException removing the Facility Detail from FacilityDetail table.");
             System.err.println(se.getMessage());
             se.printStackTrace();
         }
 
         try {
-            //remove from facility table
+            //remove from Facility table
             Statement st = DBConnector.getConnection().createStatement();
             String removeFacilityQuery = "delete from facility where facility_number = '" + facilityNumber + "'";
             st.execute(removeFacilityQuery);
@@ -149,7 +207,7 @@ public class Facility {
             Facility fac1 = new Facility();
             while ( facRS.next() ) {
                 fac1.setFacilityNumber(facRS.getInt("facility_number"));
-                // listOfFac.add( getFacilityInformation(fac1.getFacilityNumber()) ); TODO: fix this
+                //listOfFac.add( FacilityDetails.getFacilityInformation(fac1.getFacilityNumber()) ); //TODO: fix static context
             }
 
             //close to manage resources
