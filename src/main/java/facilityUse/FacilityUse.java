@@ -48,7 +48,7 @@ public class FacilityUse extends Facility {
     // Make new facilityBase reservation
     public void assignFacilityToUse(FacilityUse facUse) {
 
-        //ensures the start and end data are valid, room number exists, and room isn't already in use at that time
+        //ensures the start and end data are valid and room isn't already in use at that time
         if (facUse.getStartDate().isAfter(facUse.getEndDate())) {
             System.out.println("Start date must be before end date.");
         } else if (isInUseDuringInterval(facUse)) {
@@ -69,13 +69,12 @@ public class FacilityUse extends Facility {
 
         boolean result = false;
         try {
-            //Insert the facility ID, room number, and start/end dates into use table
+            //Insert the facility number and start/end dates into use table
             Statement st = DBConnector.getConnection().createStatement();
-            String selectUseAssignments = "SELECT * FROM use WHERE facility_id = " + facUse.getFacilityNumber();// +
-                    //" AND room_number IN (0, " + facUse.getRoomNumber() + ")";
+            String selectUseAssignments = "SELECT * FROM FacilityUse WHERE facility_number = " + facUse.getFacilityNumber();
 
             ResultSet useRS = st.executeQuery(selectUseAssignments);
-            System.out.println("UseDAO: *************** Query " + selectUseAssignments + "\n");
+            System.out.println("Use: *************** Query " + selectUseAssignments + "\n");
 
             //check if dates in database overlap with input interval
             while (useRS.next()) {
@@ -94,7 +93,7 @@ public class FacilityUse extends Facility {
 
         }
         catch (SQLException se) {
-            System.err.println("UseDAO: Threw a SQLException checking if "
+            System.err.println("Use: Threw a SQLException checking if "
                     + "facility is in use during an interval.");
             System.err.println(se.getMessage());
             se.printStackTrace();
