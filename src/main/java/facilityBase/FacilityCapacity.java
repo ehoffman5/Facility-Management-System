@@ -24,6 +24,6 @@ public class FacilityCapacity extends Facility {
     // ---------- CRUD Methods ---------- //
     // Print the capacity of the given facility
     public void requestAvailableCapacity(int facilityCapacity) {
-        System.out.println("Facility capacity: " + facilityCapacity);
+        System.out.println("Facility capacity: " + facilityCapacity);  // TODO: turn into a SELECT * statement
     }
 }
