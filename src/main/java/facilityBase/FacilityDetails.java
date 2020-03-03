@@ -34,7 +34,7 @@ public class FacilityDetails extends Facility {
 
     // ---------- CRUD Methods ---------- //
     // Function for reading details
-    public void addFacilityDetails(int facilityNumber, int facilityPhoneNo, String facilityName) {
+    public void addFacilityDetails(int facilityNumber, String facilityPhoneNo, String facilityName) {
         try {
             Connection con = DBConnector.getConnection();
             PreparedStatement facPst = null;
@@ -43,7 +43,7 @@ public class FacilityDetails extends Facility {
             String updateFacilityDetailQuery = "UPDATE FacilityDetails SET phone_number = ? WHERE facility_number = ?";
 
             facPst = con.prepareStatement(updateFacilityDetailQuery);
-            facPst.setInt(1, facilityPhoneNo);
+            facPst.setString(1, facilityPhoneNo);
             facPst.setInt(2, facilityNumber);
             facPst.executeUpdate();
 
@@ -86,7 +86,7 @@ public class FacilityDetails extends Facility {
         }
     }
 
-    // Function for modifying details
+    // Function for listing facility details
     public Facility getFacilityInformation(int facility_number) {
 
         try {
