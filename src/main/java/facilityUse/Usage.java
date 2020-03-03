@@ -4,6 +4,7 @@ import database.DBConnector;
 import facilityBase.Facility;
 import java.util.*;
 import java.sql.*;
+import java.time.*;
 
 public class Usage extends FacilityUse {
 
@@ -14,8 +15,8 @@ public class Usage extends FacilityUse {
         try {
 
             Statement st = DBConnector.getConnection().createStatement();
-            String listUsageQuery = "SELECT * FROM use WHERE facility_id = '" +
-                    fac.getFacilityNumber() + "' ORDER BY room_number, start_date";
+            String listUsageQuery = "SELECT * FROM FacilityUse WHERE facility_number = '" +
+                    fac.getFacilityNumber() + "' ORDER BY start_date";
 
             ResultSet useRS = st.executeQuery(listUsageQuery);
             System.out.println("Use: *************** Query " + listUsageQuery + "\n");
@@ -23,7 +24,7 @@ public class Usage extends FacilityUse {
             while ( useRS.next() ) {
                 FacilityUse use = new FacilityUse();
                 use.setFacilityNumber(fac.getFacilityNumber());
-                //use.setRoomNumber(useRS.getInt("room_number"));
+                use.setPurposeOfUse(useRS.getString("purpose_of_use"));
                 use.setStartDate(useRS.getDate("start_date").toLocalDate());
                 use.setEndDate(useRS.getDate("end_date").toLocalDate());
                 listOfUsage.add(use);
@@ -36,7 +37,7 @@ public class Usage extends FacilityUse {
 
         }
         catch (SQLException se) {
-            System.err.println("Use: Threw a SQLException retrieving list of usage from use table.");
+            System.err.println("Use: Threw a SQLException retrieving list of usage from FacilityUse table.");
             System.err.println(se.getMessage());
             se.printStackTrace();
         }
@@ -44,25 +45,23 @@ public class Usage extends FacilityUse {
         return null;
     }
 
+    // calculate total rate of facilities currently in use
     public double calcUsageRate(Facility fac) {
 
-        try {
-            Facility facService = new Facility();
-            //int totalRooms = fac.getFacilityDetails().getNumberOfRooms();
-            int roomsAvailable = facService.requestAvailableCapacity(fac);
-            int roomsInUse = totalRooms - roomsAvailable;
-            return Math.round(((double)roomsInUse / totalRooms) * 100d)/100d;
+        try {  // equation: total facilities / facilities in use
+
+            // TODO:  fill out this method
 
         } catch (Exception se) {
-            System.err.println("UseService: Threw an Exception retrieving list of usage for calculating the usage rate.");
+            System.err.println("Use: Threw an Exception retrieving list of usage for calculating the usage rate.");
             System.err.println(se.getMessage());
         }
 
-        return 0.00;public void calcUsageRate() {
+        return 0.00;
 
     }
 
-    public void vacateFacility(Facility fac, int roomNumber) {
+    public void vacateFacility(Facility fac) {
 
         try {
 
@@ -71,23 +70,23 @@ public class Usage extends FacilityUse {
 
             List<FacilityUse> usageList = listActualUsage(fac);
             for (FacilityUse use : usageList) {
-                //TODO these checks are also done in UseService. can they be removed from DAO method?
                 //if room number matches usage list and room is currently in use, set vacateQuery
-                if ((use.getRoomNumber() == roomNumber || use.getRoomNumber() == 0) & ((LocalDate.now().equals(use.getStartDate()) ||
-                        LocalDate.now().isAfter(use.getStartDate())) & LocalDate.now().equals(use.getEndDate()) ||
-                        LocalDate.now().isBefore(use.getEndDate()))) {
-                    vacateQuery = "UPDATE use SET end_date = '" + Date.valueOf(LocalDate.now().minusDays(1)) +
-                            "' WHERE facility_id = " + fac.getFacilityID() + "AND room_number = " + roomNumber +
-                            "AND start_date = '" + Date.valueOf(use.getStartDate()) + "'";
+                if ( (LocalDate.now().equals(use.getStartDate()) || LocalDate.now().isAfter(use.getStartDate()))
+                        & LocalDate.now().equals(use.getEndDate())
+                        || LocalDate.now().isBefore(use.getEndDate()) ) {
+                    // vacateQuery = "UPDATE FacilityUse SET end_date = '" + Date.valueOf(LocalDate.now().minusDays(1)) +
+                    //        "' WHERE facility_number = " + fac.getFacilityNumber() +
+                    //        "AND start_date = '" + Date.valueOf(use.getStartDate()) + "'";
+                    // TODO: resolve sql vs java DATE
                 }
             }
 
             st.execute(vacateQuery);
-            System.out.println("UseDAO: *************** Query " + vacateQuery + "\n");
+            System.out.println("Use: *************** Query " + vacateQuery + "\n");
 
         }
         catch (SQLException se){
-            System.err.println("UseDAO: Threw a SQLException vacating the facility.");
+            System.err.println("Use: Threw a SQLException vacating the facility.");
             System.err.println(se.getMessage());
             se.printStackTrace();
         }

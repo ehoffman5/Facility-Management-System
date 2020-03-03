@@ -42,11 +42,11 @@ public class Inspections extends FacilityUse {
         try {
 
             Statement st = DBConnector.getConnection().createStatement();
-            String listInspectionsQuery = "SELECT * FROM inspection WHERE "
-                    + "facility_id = '" + fac.getFacilityNumber() + "'";
+            String listInspectionsQuery = "SELECT * FROM Inspections WHERE "
+                    + "facility_number = '" + fac.getFacilityNumber() + "'";
 
             ResultSet useRS = st.executeQuery(listInspectionsQuery);
-            System.out.println("UseDAO: *************** Query " + listInspectionsQuery + "\n");
+            System.out.println("Use: *************** Query " + listInspectionsQuery + "\n");
 
             while ( useRS.next() ) {
                 Inspections inspec = new Inspections();
@@ -62,7 +62,7 @@ public class Inspections extends FacilityUse {
 
         }
         catch (SQLException se) {
-            System.err.println("UseDAO: Threw a SQLException retreiving "
+            System.err.println("Use: Threw a SQLException retrieving "
                     + "inspections from Inspections table.");
             System.err.println(se.getMessage());
             se.printStackTrace();

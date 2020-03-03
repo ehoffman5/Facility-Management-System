@@ -2,6 +2,7 @@ package facilityBase;
 
 import database.DBConnector;
 import facilityBase.FacilityDetails;
+import facilityBase.FacilityCapacity;
 import java.sql.*;
 import java.util.*;
 
