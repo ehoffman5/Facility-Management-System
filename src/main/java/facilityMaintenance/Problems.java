@@ -9,9 +9,10 @@ import java.time.*;
 // import java.time.temporal.chronounit;
 
 public class Problems extends FacilityMaintenance {
-/*
+
     // Function for calculating the ratio of problems a specific facility causes
-    public double calcProblemRateForFacility(Facility fac) {
+    public double calcProblemRateForFacility(Facility fac) {  // TODO: fix problem rate method
+        /*
         FacilityUse useService = new FacilityUse();
         try {
             LocalDate facilityStartDate = useService.getStartDate(fac);
@@ -24,7 +25,9 @@ public class Problems extends FacilityMaintenance {
         }
 
         return 0;
-    } */  // TODO: fix problem rate method
+        */
+        return 0;
+    }
 
     // Function to list all problem requests
     public List<FacilityMaintenance> listFacilityProblems(Facility fac) {

@@ -11,8 +11,8 @@ public class RunClient {
     public static void main(String[] args) throws Exception {
 
         FacilityBaseUI facilityClient = new FacilityBaseUI();
-        //UseClient useClient = new UseClient();
-        //MaintenanceClient maintenanceClient = new MaintenanceClient();
+        //FacilityUseUI useClient = new FacilityUseUI();
+        //FacilityMaintenanceUI maintenanceClient = new FacilityMaintenanceUI();
 
     }
 }

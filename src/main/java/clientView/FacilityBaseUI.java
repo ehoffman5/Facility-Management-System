@@ -3,7 +3,6 @@ package clientView;
 import facilityBase.Facility;
 import facilityBase.FacilityDetails;
 import facilityBase.FacilityCapacity;
-import facilityBase.FacilityDetails;
 
 import java.util.ArrayList;
 import java.util.List;

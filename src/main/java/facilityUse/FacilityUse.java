@@ -67,7 +67,7 @@ public class FacilityUse extends Facility {
     }
 
     // Check to see if a facility is in use
-    boolean isInUseDuringInterval(FacilityUse facUse) {
+    public boolean isInUseDuringInterval(FacilityUse facUse) {
 
         boolean result = false;
         try {
