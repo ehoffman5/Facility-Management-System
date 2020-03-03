@@ -26,7 +26,7 @@ public class DBConnector {
 
         }
 
-        System.out.println("DBHelper: PostgreSQL JDBC Driver Registered!");
+        System.out.println("DBConnector: PostgreSQL JDBC Driver Registered!");
 
         Connection connection = null;
 
@@ -37,21 +37,21 @@ public class DBConnector {
             ResultSet rs = st.executeQuery("SELECT VERSION()");
 
             if (rs.next()) {
-                System.out.println("DBHelper: The Database Version is " + rs.getString(1));
+                System.out.println("DBConnector: The Database Version is " + rs.getString(1));
             }
 
         } catch (SQLException e) {
 
-            System.out.println("DBHelper: Connection Failed! Check output console");
+            System.out.println("DBConnector: Connection Failed! Check output console");
             e.printStackTrace();
             return null;
 
         }
 
         if (connection != null) {
-            System.out.println("DBHelper: You have a database connection!");
+            System.out.println("DBConnector: You have a database connection!");
         } else {
-            System.out.println("DBHelper: Failed to make connection!");
+            System.out.println("DBConnector: Failed to make connection!");
         }
 
         return connection;

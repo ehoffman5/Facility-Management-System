@@ -48,6 +48,8 @@ public class FacilityUse extends Facility {
     // Make new facilityBase reservation
     public void assignFacilityToUse(FacilityUse facUse) {
 
+        FacilityUse useObj = new FacilityUse();
+
         //ensures the start and end data are valid and room isn't already in use at that time
         if (facUse.getStartDate().isAfter(facUse.getEndDate())) {
             System.out.println("Start date must be before end date.");
@@ -55,7 +57,7 @@ public class FacilityUse extends Facility {
             System.out.println("This room at the facility is already in use during this interval.");
         } else {
             try {
-                // FacilityUse.assignFacilityToUse(facUse);  // TODO: fix static context (create object to use instead)
+                useObj.assignFacilityToUse(facUse);
             } catch (Exception se) {
                 System.err.println("Use: Threw an Exception assigning a facility to use.");
                 System.err.println(se.getMessage());

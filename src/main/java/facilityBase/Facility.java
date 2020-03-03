@@ -196,6 +196,7 @@ public class Facility {
     public List<Facility> listFacilities() {
 
         List<Facility> listOfFac = new ArrayList<Facility>();
+        FacilityDetails detailsObj = new FacilityDetails();
 
         try {
 
@@ -208,7 +209,7 @@ public class Facility {
             Facility fac1 = new Facility();
             while ( facRS.next() ) {
                 fac1.setFacilityNumber(facRS.getInt("facility_number"));
-                //listOfFac.add( FacilityDetails.getFacilityInformation(fac1.getFacilityNumber()) ); //TODO: fix static context
+                listOfFac.add( detailsObj.getFacilityInformation(fac1.getFacilityNumber()) );
             }
 
             //close to manage resources

@@ -29,9 +29,11 @@ public class Problems extends FacilityMaintenance {
     // Function to list all problem requests
     public List<FacilityMaintenance> listFacilityProblems(Facility fac) {
         List<FacilityMaintenance> facilityProblems = new ArrayList<FacilityMaintenance>();
+        FacilityMaintenance maintObj = new FacilityMaintenance();
+
         try {
-            // facilityProblems.addAll(FacilityMaintenance.listFacilityMaintRequests(fac));  // TODO: fix static context
-            // facilityProblems.addAll(FacilityMaintenance.listMaintenance(fac));
+            facilityProblems.addAll(maintObj.listFacilityMaintRequests(fac));
+            facilityProblems.addAll(maintObj.listMaintenance(fac));
 
             //sort problems by cost
             Collections.sort(facilityProblems, new Comparator<FacilityMaintenance>() {
