@@ -46,7 +46,7 @@ public class Usage extends FacilityUse {
     }
 
     // calculate total rate of facilities currently in use
-    public String calcUsageRate(Facility fac) {
+    public double calcUsageRate(Facility fac) {
 
         try {  // equation: total facilities / facilities in use
 
@@ -55,14 +55,14 @@ public class Usage extends FacilityUse {
 
             ResultSet useRS = st.executeQuery(getUsageRate);
             System.out.println("Use: *************** Query " + getUsageRate + "\n");
-            return getUsageRate;
+            return 1;
 
         } catch (Exception se) {
             System.err.println("Use: Threw an Exception retrieving list of usage for calculating the usage rate.");
             System.err.println(se.getMessage());
         }
 
-        return "0.00";
+        return 0.00;
 
     }
 
