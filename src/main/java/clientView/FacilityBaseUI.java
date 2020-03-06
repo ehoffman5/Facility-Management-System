@@ -101,7 +101,7 @@ public class FacilityBaseUI {
 
         System.out.println("\nFacilityClient: *************** Request available capacity of a facility *************************");
         //uses sample data
-        //int capacityAvail = facCapacityService.requestAvailableCapacity(fact4);
+        //int capacityAvail = facCapacityService.requestAvailableCapacity(fact4);  // TODO: fix this
         //System.out.println("There are " + capacityAvail + " occupancy spaces currently available at Facility #" + fact4.getFacilityNumber() + ".");
 
     }
