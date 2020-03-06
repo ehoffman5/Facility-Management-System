@@ -50,7 +50,7 @@ public class Inspections extends FacilityUse {
 
             while ( useRS.next() ) {
                 Inspections inspec = new Inspections();
-                // inspec.setInspectionDate(useRS.getDate("inspection_date"));  TODO: convert SQL date to LocalDate
+                inspec.setInspectionDate(useRS.getDate("inspection_date").toLocalDate());
                 inspec.setInspectionDetails(useRS.getString("inspection_detail"));
                 inspec.setFacilityNumber(fac.getFacilityNumber());
                 listOfInspec.add(inspec);

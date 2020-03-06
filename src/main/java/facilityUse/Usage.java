@@ -46,18 +46,23 @@ public class Usage extends FacilityUse {
     }
 
     // calculate total rate of facilities currently in use
-    public double calcUsageRate(Facility fac) {
+    public String calcUsageRate(Facility fac) {
 
         try {  // equation: total facilities / facilities in use
 
-            // TODO:  fill out this method
+            Statement st = DBConnector.getConnection().createStatement();
+            String getUsageRate = "SELECT count(reservation_number)/count(facility_number) FROM facilityUse, Facility";
+
+            ResultSet useRS = st.executeQuery(getUsageRate);
+            System.out.println("Use: *************** Query " + getUsageRate + "\n");
+            return getUsageRate;
 
         } catch (Exception se) {
             System.err.println("Use: Threw an Exception retrieving list of usage for calculating the usage rate.");
             System.err.println(se.getMessage());
         }
 
-        return 0.00;
+        return "0.00";
 
     }
 
@@ -74,10 +79,9 @@ public class Usage extends FacilityUse {
                 if ( (LocalDate.now().equals(use.getStartDate()) || LocalDate.now().isAfter(use.getStartDate()))
                         & LocalDate.now().equals(use.getEndDate())
                         || LocalDate.now().isBefore(use.getEndDate()) ) {
-                    // vacateQuery = "UPDATE FacilityUse SET end_date = '" + Date.valueOf(LocalDate.now().minusDays(1)) +
-                    //        "' WHERE facility_number = " + fac.getFacilityNumber() +
-                    //        "AND start_date = '" + Date.valueOf(use.getStartDate()) + "'";
-                    // TODO: resolve sql vs java DATE
+                    vacateQuery = "UPDATE FacilityUse SET end_date = '" + java.sql.Date.valueOf(LocalDate.now().minusDays(1)) +
+                            "' WHERE facility_number = " + fac.getFacilityNumber() +
+                            "AND start_date = '" + java.sql.Date.valueOf(use.getStartDate()) + "'";
                 }
             }
 

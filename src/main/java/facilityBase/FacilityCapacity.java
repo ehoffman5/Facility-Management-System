@@ -1,7 +1,5 @@
 package facilityBase;
 
-import java.util.HashMap;
-
 public class FacilityCapacity extends Facility {
 
     // Variable declarations
@@ -23,7 +21,7 @@ public class FacilityCapacity extends Facility {
 
     // ---------- CRUD Methods ---------- //
     // Print the capacity of the given facility
-    public int requestAvailableCapacity(Facility fac) {
-        return facilityCapacity;  // TODO: turn into a SELECT * statement
+    public int requestAvailableCapacity(FacilityCapacity fac) {
+        return fac.getFacilityCapacity();
     }
 }
