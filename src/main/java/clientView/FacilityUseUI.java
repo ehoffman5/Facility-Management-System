@@ -4,7 +4,8 @@ import facilityBase.Facility;
 import facilityBase.FacilityDetails;
 import facilityUse.FacilityUse;
 import facilityUse.Inspections;
-import facilityUse.Usage;
+import services.FacilityBaseService;
+import services.FacilityUseService;
 
 import java.time.*;
 import java.util.List;
@@ -13,10 +14,8 @@ public class FacilityUseUI {
 
     public FacilityUseUI() throws Exception {
 
-        FacilityUse useService = new FacilityUse();
-        Inspections inspectionService = new Inspections();
-        Usage usageService = new Usage();
-        Facility facilityService = new Facility();
+        FacilityUseService useService = new FacilityUseService();
+        FacilityBaseService facilityService = new FacilityBaseService();
 
         //set up facilities for dummy data
         Facility fact1 = new Facility();
@@ -43,7 +42,7 @@ public class FacilityUseUI {
 
         //uses sample dummy data for inspections in database
         System.out.println("\n\tInspections At Facility #" + fact7.getFacilityNumber());
-        for (Inspections inspec : inspectionService.listInspections(fact7)) {
+        for (Inspections inspec : useService.listInspections(fact7)) {
             System.out.println("\t" + inspec.getInspectionDetails() +
                     " date: " + inspec.getInspectionDate());
         }
@@ -94,7 +93,7 @@ public class FacilityUseUI {
         System.out.println("\nUseClient: ************ Listing the usage at a facility before being vacated***************");
 
         //uses sample dummy data of usage in database
-        List<FacilityUse> usageList = usageService.listActualUsage(factUse);
+        List<FacilityUse> usageList = useService.listActualUsage(factUse);
         Object[][] usage = new Object[usageList.size() + 1][3];
         usage[0] = new Object[] {"Room #", "Start Date", "End Date"};
         for (int i = 1; i <= usageList.size(); i++) {
@@ -110,14 +109,14 @@ public class FacilityUseUI {
         }
 
         System.out.println("\nUseClient: ************ Vacate a facility  ***************");
-        usageService.vacateFacility(factUse);
+        useService.vacateFacility(factUse);
         System.out.println("\nUseClient: ************ Facility vacated  ***************");
 
         //list actual usage that has been assigned to a particular facility
         System.out.println("\nUseClient: ************ Listing the usage at a facility after being vacated***************");
 
         //uses sample dummy data of usage in database
-        List<FacilityUse> usageList2 = usageService.listActualUsage(factUse);
+        List<FacilityUse> usageList2 = useService.listActualUsage(factUse);
         Object[][] usage2 = new Object[usageList2.size() + 1][3];
         usage2[0] = new Object[] {"Room #", "Start Date", "End Date"};
         for (int i = 1; i <= usageList2.size(); i++) {
@@ -136,7 +135,7 @@ public class FacilityUseUI {
 
         //calculate current usage rate of a facility
         System.out.println("\nUseClient: ************ Calculating the current usage rate at a facility ***************");
-        int usageRate = (int) (usageService.calcUsageRate(fact3) * 100);
+        int usageRate = (int) (useService.calcUsageRate(fact3) * 100);
         System.out.println("Current usage at Facility #" + fact3.getFacilityNumber() + " is " + usageRate + "%.");
 
 

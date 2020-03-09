@@ -18,8 +18,6 @@ public class FacilityCapacity extends Facility {
         return facilityCapacity;
     }
 
-
-    // ---------- CRUD Methods ---------- //
     // Print the capacity of the given facility
     public int requestAvailableCapacity(FacilityCapacity fac) {
         return fac.getFacilityCapacity();

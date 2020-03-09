@@ -2,21 +2,15 @@ package clientView;
 
 import facilityBase.Facility;
 import facilityBase.FacilityDetails;
-
 import facilityMaintenance.FacilityMaintenance;
-import facilityMaintenance.Costs;
-import facilityMaintenance.DownTime;
-import facilityMaintenance.Problems;
+import services.FacilityMaintenanceService;
 
 import java.util.List;
 
 public class FacilityMaintenanceUI {
     public FacilityMaintenanceUI() throws Exception {
 
-        FacilityMaintenance maintenanceService = new FacilityMaintenance();
-        Costs costService = new Costs();
-        DownTime downTimeService = new DownTime();
-        Problems problemsService = new Problems();
+        FacilityMaintenanceService maintenanceService = new FacilityMaintenanceService();
 
         //set up facilities for dummy data
         Facility fact1 = new Facility();
@@ -50,7 +44,7 @@ public class FacilityMaintenanceUI {
         System.out.println("\nMaintenanceClient: *********** Maintenance request scheduled *****************");
 
         System.out.println("\nMaintenanceClient: *********** Calculate total maintenance cost of a facility *****************");
-        int totalCost = costService.calcMaintCostForFacility(fact1);
+        int totalCost = maintenanceService.calcMaintCostForFacility(fact1);
         System.out.println("The total cost of maintenance already completed at Facility #" + fact1.getFacilityNumber() + " is $" + totalCost + ".");
 
 
@@ -82,7 +76,7 @@ public class FacilityMaintenanceUI {
 
         //uses sample data to list facility problems, formatted as a table
         System.out.println("\nMaintenanceClient: *********** List all problems that have affected a facility *****************");
-        List<FacilityMaintenance> facilityProblemsList = problemsService.listFacilityProblems(fact3);
+        List<FacilityMaintenance> facilityProblemsList = maintenanceService.listFacilityProblems(fact3);
         Object[][] problems = new Object[facilityProblemsList.size() + 1][2];
         problems[0] = new Object[] {"Problem Details", "Cost"};
         for (int i = 1; i <= facilityProblemsList.size(); i++) {
@@ -94,12 +88,12 @@ public class FacilityMaintenanceUI {
         }
 
         System.out.println("\nMaintenanceClient: *********** Calculate the down time for a facility *****************");
-        int downTime = downTimeService.calcDownTimeForFacility(fact3);
+        int downTime = maintenanceService.calcDownTimeForFacility(fact3);
         System.out.println("Facility #" + fact3.getFacilityNumber() + " was down for maintenance for " + downTime + " days total, "
                 + "assuming each completed maintenance request took 7 days to complete.");
 
         System.out.println("\nMaintenanceClient: *********** Calculate the problem rate for a facility *****************");
-        double problemRate = problemsService.calcProblemRateForFacility(fact3) * 100;
+        double problemRate = maintenanceService.calcProblemRateForFacility(fact3) * 100;
         System.out.print("\nThe problem rate at Facility #" + fact3.getFacilityNumber() + " is ");
         System.out.format("%.2f", problemRate);
         System.out.print("%.");

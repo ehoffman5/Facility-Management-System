@@ -3,6 +3,7 @@ package clientView;
 import facilityBase.Facility;
 import facilityBase.FacilityDetails;
 import facilityBase.FacilityCapacity;
+import services.FacilityBaseService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +13,7 @@ public class FacilityBaseUI {
 
     public FacilityBaseUI() throws Exception {
 
-        Facility facService = new Facility();
-        FacilityDetails facDetailsService = new FacilityDetails();
-        FacilityCapacity facCapacityService = new FacilityCapacity();
+        FacilityBaseService facService = new FacilityBaseService();
 
         //set up facilities for dummy data
         Facility fact1 = new Facility();
@@ -54,7 +53,7 @@ public class FacilityBaseUI {
 
         System.out.println("FacilityClient: *************** Trying to get information about this facility in the database ***************");
 
-        Facility searchedFacility = facDetailsService.getFacilityInformation(11);
+        Facility searchedFacility = facService.getFacilityInformation(11);
 
         System.out.println("\nFacilityClient: *************** Here is searched facility information *************************");
         System.out.println("\n\tFacility Number:   \t\t" + searchedFacility.getFacilityNumber());
@@ -70,9 +69,9 @@ public class FacilityBaseUI {
 
 
         //add optional phone number to facility detail
-        facDetailsService.addFacilityDetails(11, "3120136", "Damen");
+        facService.addFacilityDetails(11, "3120136", "Damen");
 
-        Facility updatedFacility = facDetailsService.getFacilityInformation(11);
+        Facility updatedFacility = facService.getFacilityInformation(11);
         FacilityDetails facilityNewDet = updatedFacility.getFacilityDetails();
 
         System.out.println("\nFacilityClient: *************** Here is the updated facility information *************************");
