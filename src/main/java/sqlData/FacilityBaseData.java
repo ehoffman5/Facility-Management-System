@@ -57,16 +57,18 @@ public class FacilityBaseData implements FacilityBaseDataImpl {
 
     // Remove a facility
     public void removeFacility(int facilityNumber) {
-
+        Connection con = DBConnector.getConnection();
+        PreparedStatement facPst = null;
         try {
             //remove from FacilityUse table
-            Statement st = DBConnector.getConnection().createStatement();
-            String removeFacilityUseQuery = "delete from FacilityUse where facility_number = '" + facilityNumber + "'";
-            st.execute(removeFacilityUseQuery);
+            String removeFacilityUseQuery = "delete from FacilityUse where facility_number = ?'";
+            facPst = con.prepareStatement(removeFacilityUseQuery);
+            facPst.setInt(1, facilityNumber);
+            facPst.executeUpdate();
 
             System.out.println("Facility: *************** Query " + removeFacilityUseQuery + "\n");
             //close to manage resources
-            st.close();
+            con.close();
         }
         catch (SQLException se) {
             System.err.println("Facility: Threw a SQLException removing the Facility from FacilityUse table.");
@@ -76,13 +78,14 @@ public class FacilityBaseData implements FacilityBaseDataImpl {
 
         try {
             //remove from Inspections table
-            Statement st = DBConnector.getConnection().createStatement();
-            String removeInspectionsQuery = "delete from Inspections where facility_number = '" + facilityNumber + "'";
-            st.execute(removeInspectionsQuery);
+            String removeInspectionsQuery = "delete from Inspections where facility_number = ?";
+            facPst = con.prepareStatement(removeInspectionsQuery);
+            facPst.setInt(1, facilityNumber);
+            facPst.executeUpdate();
 
             System.out.println("Facility: *************** Query " + removeInspectionsQuery + "\n");
             //close to manage resources
-            st.close();
+            con.close();
         }
         catch (SQLException se) {
             System.err.println("Facility: Threw a SQLException removing the Facility from Inspections table.");
@@ -92,13 +95,14 @@ public class FacilityBaseData implements FacilityBaseDataImpl {
 
         try {
             //remove from MaintenanceRequests table
-            Statement st = DBConnector.getConnection().createStatement();
-            String removeMaintenanceRequestsQuery = "delete from MaintenanceRequests where facility_number = '" + facilityNumber + "'";
-            st.execute(removeMaintenanceRequestsQuery);
+            String removeMaintenanceRequestsQuery = "delete from MaintenanceRequests where facility_number = ?";
+            facPst = con.prepareStatement(removeMaintenanceRequestsQuery);
+            facPst.setInt(1, facilityNumber);
+            facPst.executeUpdate();
 
             System.out.println("Facility: *************** Query " + removeMaintenanceRequestsQuery + "\n");
             //close to manage resources
-            st.close();
+            con.close();
         }
         catch (SQLException se) {
             System.err.println("Facility: Threw a SQLException removing the Facility from MaintenanceRequests table.");
@@ -108,13 +112,14 @@ public class FacilityBaseData implements FacilityBaseDataImpl {
 
         try {
             //remove from ActiveMaintenance table
-            Statement st = DBConnector.getConnection().createStatement();
-            String removeActiveMaintenanceQuery = "delete from ActiveMaintenance where facility_number = '" + facilityNumber + "'";
-            st.execute(removeActiveMaintenanceQuery);
+            String removeActiveMaintenanceQuery = "delete from ActiveMaintenance where facility_number = ?";
+            facPst = con.prepareStatement(removeActiveMaintenanceQuery);
+            facPst.setInt(1, facilityNumber);
+            facPst.executeUpdate();
 
             System.out.println("Facility: *************** Query " + removeActiveMaintenanceQuery + "\n");
             //close to manage resources
-            st.close();
+            con.close();
         }
         catch (SQLException se) {
             System.err.println("Facility: Threw a SQLException removing the Facility from ActiveMaintenance table.");
@@ -124,13 +129,14 @@ public class FacilityBaseData implements FacilityBaseDataImpl {
 
         try {
             //remove from FacilityCapacity table
-            Statement st = DBConnector.getConnection().createStatement();
-            String removeFacilityCapacityQuery = "delete from FacilityCapacity where facility_number = '" + facilityNumber + "'";
-            st.execute(removeFacilityCapacityQuery);
+            String removeFacilityCapacityQuery = "delete from FacilityCapacity where facility_number = ?";
+            facPst = con.prepareStatement(removeFacilityCapacityQuery);
+            facPst.setInt(1, facilityNumber);
+            facPst.executeUpdate();
 
             System.out.println("Facility: *************** Query " + removeFacilityCapacityQuery + "\n");
             //close to manage resources
-            st.close();
+            con.close();
         }
         catch (SQLException se) {
             System.err.println("Facility: Threw a SQLException removing the Facility from FacilityCapacity table.");
@@ -140,13 +146,14 @@ public class FacilityBaseData implements FacilityBaseDataImpl {
 
         try {
             //remove from FacilityDetail table
-            Statement st = DBConnector.getConnection().createStatement();
-            String removeFacilityDetailQuery = "delete from FacilityDetail where facility_number = '" + facilityNumber + "'";
-            st.execute(removeFacilityDetailQuery);
+            String removeFacilityDetailQuery = "delete from FacilityDetail where facility_number = ?";
+            facPst = con.prepareStatement(removeFacilityDetailQuery);
+            facPst.setInt(1, facilityNumber);
+            facPst.executeUpdate();
 
             System.out.println("Facility: *************** Query " + removeFacilityDetailQuery + "\n");
             //close to manage resources
-            st.close();
+            con.close();
         }
         catch (SQLException se) {
             System.err.println("Facility: Threw a SQLException removing the Facility Detail from FacilityDetail table.");
@@ -156,13 +163,14 @@ public class FacilityBaseData implements FacilityBaseDataImpl {
 
         try {
             //remove from Facility table
-            Statement st = DBConnector.getConnection().createStatement();
-            String removeFacilityQuery = "delete from facility where facility_number = '" + facilityNumber + "'";
-            st.execute(removeFacilityQuery);
+            String removeFacilityQuery = "delete from facility where facility_number = ?";
+            facPst = con.prepareStatement(removeFacilityQuery);
+            facPst.setInt(1, facilityNumber);
+            facPst.executeUpdate();
 
             System.out.println("Facility: *************** Query " + removeFacilityQuery + "\n");
             //close to manage resources
-            st.close();
+            con.close();
         }
         catch (SQLException se) {
             System.err.println("Facility: Threw a SQLException removing the Facility object from Facility table.");
@@ -263,14 +271,21 @@ public class FacilityBaseData implements FacilityBaseDataImpl {
     // Function for listing facility details
     public Facility getFacilityInformation(int facilityNumber) {
 
+        Connection con = DBConnector.getConnection();
+        PreparedStatement facPst = null;
+
         try {
 
             Facility fac1 = new Facility();
             fac1.setFacilityNumber(facilityNumber);
+            Statement st = DBConnector.getConnection().createStatement();
 
             //Get details about facility
-            Statement st = DBConnector.getConnection().createStatement();
-            String selectDetailQuery = "SELECT facility_number,facility_name,phone_number FROM FacilityDetails WHERE facility_number = '" + facilityNumber + "'";
+            String selectDetailQuery = "SELECT facility_number,facility_name,phone_number FROM FacilityDetails WHERE facility_number = ?";
+            facPst = con.prepareStatement(selectDetailQuery);
+            facPst.setInt(1, facilityNumber);
+            facPst.executeUpdate();
+
             ResultSet detRS = st.executeQuery(selectDetailQuery);
             FacilityDetails detail = new FacilityDetails();
 
