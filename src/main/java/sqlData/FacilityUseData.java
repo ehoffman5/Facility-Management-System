@@ -4,7 +4,7 @@ import database.DBConnector;
 import facilityBase.Facility;
 import facilityUse.FacilityUse;
 import facilityUse.Inspections;
-import interfaces.FacilityUseImpl;
+import interfaces.FacilityUseDataImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,27 +13,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FacilityUseData implements FacilityUseImpl {
+public class FacilityUseData implements FacilityUseDataImpl {
+
+    // Data class separates DB management concerns from service classes
 
     // ---------- FacilityUse Methods ---------- //
-    // Make new facilityBase reservation
-    public void assignFacilityToUse(FacilityUse facUse) {
-        //ensures the start and end data are valid and room isn't already in use at that time
-        if (facUse.getStartDate().isAfter(facUse.getEndDate())) {
-            System.out.println("Start date must be before end date.");
-        } else if (isInUseDuringInterval(facUse)) {
-            System.out.println("This room at the facility is already in use during this interval.");
-        } else {
-            try {
-                assignFacilityToUse(facUse);
-            } catch (Exception se) {
-                System.err.println("Use: Threw an Exception assigning a facility to use.");
-                System.err.println(se.getMessage());
-            }
-        }
-
-    }
-
     // Check to see if a facility is in use
     public boolean isInUseDuringInterval(FacilityUse facUse) {
 

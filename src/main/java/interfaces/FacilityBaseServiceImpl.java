@@ -3,7 +3,7 @@ package interfaces;
 import facilityBase.Facility;
 import java.util.List;
 
-public interface FacilityBaseImpl {
+public interface FacilityBaseServiceImpl {
 
     public void addFacility(Facility facility);
     public void removeFacility(int facilityNumber);

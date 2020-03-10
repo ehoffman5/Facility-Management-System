@@ -1,18 +1,16 @@
 package services;
 
 import facilityBase.Facility;
-import interfaces.FacilityBaseImpl;
+import interfaces.FacilityBaseServiceImpl;
 import sqlData.FacilityBaseData;
-import sqlData.FacilityUseData;
 
 import java.util.List;
 
-public class FacilityBaseService implements FacilityBaseImpl {
+public class FacilityBaseService implements FacilityBaseServiceImpl {
 
     // Service class separates concerns from main classes with getter and setter methods
 
     private FacilityBaseData facData = new FacilityBaseData();
-    private FacilityUseData useData = new FacilityUseData();
 
     // ---------- Facility Base Methods ---------- //
     // Add new facility
@@ -65,7 +63,7 @@ public class FacilityBaseService implements FacilityBaseImpl {
             Facility fac = facData.getFacilityInformation(facilityNumber);
             return fac;
         } catch (Exception se) {
-            System.err.println("Facility: Threw an Exception retrieving facility.");
+            System.err.println("Facility: Threw an Exception retrieving facility information.");
             System.err.println(se.getMessage());
         }
         return null;
