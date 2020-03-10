@@ -11,6 +11,8 @@ import java.util.List;
 
 public class FacilityBaseData implements FacilityBaseImpl {
 
+    // Data class separates DB management concerns from service classes
+
     // ---------- Facility Base Methods ---------- //
     // Add new facility
     public void addFacility(Facility facility) {
@@ -259,16 +261,16 @@ public class FacilityBaseData implements FacilityBaseImpl {
     }
 
     // Function for listing facility details
-    public Facility getFacilityInformation(int facility_number) {
+    public Facility getFacilityInformation(int facilityNumber) {
 
         try {
 
             Facility fac1 = new Facility();
-            fac1.setFacilityNumber(facility_number);
+            fac1.setFacilityNumber(facilityNumber);
 
             //Get details about facility
             Statement st = DBConnector.getConnection().createStatement();
-            String selectDetailQuery = "SELECT facility_number,facility_name,phone_number FROM FacilityDetails WHERE facility_number = '" + facility_number + "'";
+            String selectDetailQuery = "SELECT facility_number,facility_name,phone_number FROM FacilityDetails WHERE facility_number = '" + facilityNumber + "'";
             ResultSet detRS = st.executeQuery(selectDetailQuery);
             FacilityDetails detail = new FacilityDetails();
 
