@@ -3,12 +3,13 @@ package sqlData;
 import database.DBConnector;
 import facilityBase.Facility;
 import facilityBase.FacilityDetails;
+import interfaces.FacilityBaseImpl;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FacilityBaseData {
+public class FacilityBaseData implements FacilityBaseImpl {
 
     // ---------- Facility Base Methods ---------- //
     // Add new facility

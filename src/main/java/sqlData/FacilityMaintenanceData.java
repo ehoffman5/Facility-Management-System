@@ -4,6 +4,7 @@ import database.DBConnector;
 import facilityBase.Facility;
 import facilityMaintenance.FacilityMaintenance;
 import facilityUse.FacilityUse;
+import interfaces.FacilityMaintenanceImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +16,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class FacilityMaintenanceData {
+public class FacilityMaintenanceData implements FacilityMaintenanceImpl {
 
     // ---------- Facility Maintenance Methods ---------- //
     // Method for submitting a new request

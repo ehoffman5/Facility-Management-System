@@ -4,6 +4,7 @@ import database.DBConnector;
 import facilityBase.Facility;
 import facilityUse.FacilityUse;
 import facilityUse.Inspections;
+import interfaces.FacilityUseImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FacilityUseData {
+public class FacilityUseData implements FacilityUseImpl {
 
     // ---------- FacilityUse Methods ---------- //
     // Make new facilityBase reservation
