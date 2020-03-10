@@ -2,18 +2,15 @@ package clientView;
 
 import facilityBase.Facility;
 import facilityBase.FacilityDetails;
-import facilityBase.FacilityCapacity;
-import services.FacilityBaseService;
+import sqlData.FacilityBaseData;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
 
 public class FacilityBaseUI {
 
     public FacilityBaseUI() throws Exception {
 
-        FacilityBaseService facService = new FacilityBaseService();
+        FacilityBaseData facService = new FacilityBaseData();
 
         //set up facilities for dummy data
         Facility fact1 = new Facility();
