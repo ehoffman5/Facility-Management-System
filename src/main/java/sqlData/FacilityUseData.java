@@ -6,9 +6,7 @@ import facilityUse.FacilityUse;
 import facilityUse.Inspections;
 import interfaces.FacilityUseDataImpl;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +19,16 @@ public class FacilityUseData implements FacilityUseDataImpl {
     // Check to see if a facility is in use
     public boolean isInUseDuringInterval(FacilityUse facUse) {
 
+        Connection con = DBConnector.getConnection();
+        PreparedStatement facPst = null;
         boolean result = false;
         try {
             //Insert the facility number and start/end dates into use table
             Statement st = DBConnector.getConnection().createStatement();
-            String selectUseAssignments = "SELECT * FROM FacilityUse WHERE facility_number = " + facUse.getFacilityNumber();
+            String selectUseAssignments = "SELECT * FROM FacilityUse WHERE facility_number = ?";
+            facPst = con.prepareStatement(selectUseAssignments);
+            facPst.setInt(1, facUse.getFacilityNumber());
+            facPst.executeUpdate();
 
             ResultSet useRS = st.executeQuery(selectUseAssignments);
             System.out.println("Use: *************** Query " + selectUseAssignments + "\n");
@@ -43,12 +46,12 @@ public class FacilityUseData implements FacilityUseDataImpl {
 
             //close to manage resources
             useRS.close();
+            con.close();
             st.close();
 
         }
         catch (SQLException se) {
-            System.err.println("Use: Threw a SQLException checking if "
-                    + "facility is in use during an interval.");
+            System.err.println("Use: Threw a SQLException checking if facility is in use during an interval.");
             System.err.println(se.getMessage());
             se.printStackTrace();
         }
@@ -62,12 +65,16 @@ public class FacilityUseData implements FacilityUseDataImpl {
     public List<Inspections> listInspections(Facility fac) {
 
         List<Inspections> listOfInspec = new ArrayList<Inspections>();
+        Connection con = DBConnector.getConnection();
+        PreparedStatement facPst = null;
 
         try {
 
             Statement st = DBConnector.getConnection().createStatement();
-            String listInspectionsQuery = "SELECT * FROM Inspections WHERE "
-                    + "facility_number = '" + fac.getFacilityNumber() + "'";
+            String listInspectionsQuery = "SELECT * FROM Inspections WHERE facility_number = ?";
+            facPst = con.prepareStatement(listInspectionsQuery);
+            facPst.setInt(1, fac.getFacilityNumber());
+            facPst.executeUpdate();
 
             ResultSet useRS = st.executeQuery(listInspectionsQuery);
             System.out.println("Use: *************** Query " + listInspectionsQuery + "\n");
@@ -82,12 +89,12 @@ public class FacilityUseData implements FacilityUseDataImpl {
 
             //close to manage resources
             useRS.close();
+            con.close();
             st.close();
 
         }
         catch (SQLException se) {
-            System.err.println("Use: Threw a SQLException retrieving "
-                    + "inspections from Inspections table.");
+            System.err.println("Use: Threw a SQLException retrieving inspections from Inspections table.");
             System.err.println(se.getMessage());
             se.printStackTrace();
         }
@@ -101,12 +108,16 @@ public class FacilityUseData implements FacilityUseDataImpl {
     public List<FacilityUse> listActualUsage(Facility fac) {
 
         List<FacilityUse> listOfUsage = new ArrayList<FacilityUse>();
+        Connection con = DBConnector.getConnection();
+        PreparedStatement facPst = null;
 
         try {
 
             Statement st = DBConnector.getConnection().createStatement();
-            String listUsageQuery = "SELECT * FROM FacilityUse WHERE facility_number = '" +
-                    fac.getFacilityNumber() + "' ORDER BY start_date";
+            String listUsageQuery = "SELECT * FROM FacilityUse WHERE facility_number = ? ORDER BY start_date";
+            facPst = con.prepareStatement(listUsageQuery);
+            facPst.setInt(1, fac.getFacilityNumber());
+            facPst.executeUpdate();
 
             ResultSet useRS = st.executeQuery(listUsageQuery);
             System.out.println("Use: *************** Query " + listUsageQuery + "\n");
@@ -122,6 +133,7 @@ public class FacilityUseData implements FacilityUseDataImpl {
 
             //close to manage resources
             useRS.close();
+            con.close();
             st.close();
             return listOfUsage;
 
@@ -159,6 +171,9 @@ public class FacilityUseData implements FacilityUseDataImpl {
     // Empty all occupants from facility
     public void vacateFacility(Facility fac) {
 
+        Connection con = DBConnector.getConnection();
+        PreparedStatement facPst = null;
+
         try {
 
             Statement st = DBConnector.getConnection().createStatement();
@@ -170,9 +185,12 @@ public class FacilityUseData implements FacilityUseDataImpl {
                 if ( (LocalDate.now().equals(use.getStartDate()) || LocalDate.now().isAfter(use.getStartDate()))
                         & LocalDate.now().equals(use.getEndDate())
                         || LocalDate.now().isBefore(use.getEndDate()) ) {
-                    vacateQuery = "UPDATE FacilityUse SET end_date = '" + java.sql.Date.valueOf(LocalDate.now().minusDays(1)) +
-                            "' WHERE facility_number = " + fac.getFacilityNumber() +
-                            "AND start_date = '" + java.sql.Date.valueOf(use.getStartDate()) + "'";
+                    vacateQuery = "UPDATE FacilityUse SET end_date = ? WHERE facility_number = ? AND start_date = ?";
+                    facPst = con.prepareStatement(vacateQuery);
+                    facPst.setDate(1, java.sql.Date.valueOf(LocalDate.now().minusDays(1)));
+                    facPst.setInt(2, fac.getFacilityNumber());
+                    facPst.setDate(3, java.sql.Date.valueOf(use.getStartDate()));
+                    facPst.executeUpdate();
                 }
             }
 
