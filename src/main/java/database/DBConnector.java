@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class DBConnector {
 
-    // This class uses the Java Database Connectivity API
+    // This class uses the Java Database Connectivity API to connect to the Heroku Postgres DB
     @SuppressWarnings("unused")
     public static Connection getConnection() {
 

@@ -84,6 +84,7 @@ public class FacilityUseService implements FacilityUseServiceImpl {
         return 0.0;
     }
 
+    // Empty all occupants from facility
     public void vacateFacility(Facility fac) {
         try {
             useData.vacateFacility(fac);
