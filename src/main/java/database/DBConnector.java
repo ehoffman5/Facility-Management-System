@@ -32,7 +32,8 @@ public class DBConnector {
 
         try {
 
-            connection = DriverManager.getConnection("jdbc:postgres://otgtfczhjzawoi:a11b6b36d7b03dc1424ff132543a425a8a7b26a74baeb922674368cde0eb72b0@ec2-52-202-185-87.compute-1.amazonaws.com:5432/d9q1c8e4t90ihu", "otgtfczhjzawoi", "a11b6b36d7b03dc1424ff132543a425a8a7b26a74baeb922674368cde0eb72b0");
+            // Connection calls DB host, user, and password from Heroku environment variables for encapsulation
+            connection = DriverManager.getConnection(System.getenv("DATABASE_URL"), System.getenv("DATABASE_USER"), System.getenv("DATABASE_PASSWORD"));
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery("SELECT VERSION()");
 
