@@ -2,7 +2,7 @@ package clientView;
 
 import facilityBase.Facility;
 import facilityBase.FacilityDetails;
-import sqlData.FacilityBaseData;
+import services.FacilityBaseService;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class FacilityBaseUI {
 
     public FacilityBaseUI() throws Exception {
 
-        FacilityBaseData facService = new FacilityBaseData();
+        FacilityBaseService facService = new FacilityBaseService();
 
         //set up facilities for dummy data
         Facility fact1 = new Facility();

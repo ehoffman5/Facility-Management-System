@@ -3,14 +3,14 @@ package clientView;
 import facilityBase.Facility;
 import facilityBase.FacilityDetails;
 import facilityMaintenance.FacilityMaintenance;
-import sqlData.FacilityMaintenanceData;
+import services.FacilityMaintenanceService;
 
 import java.util.List;
 
 public class FacilityMaintenanceUI {
     public FacilityMaintenanceUI() throws Exception {
 
-        FacilityMaintenanceData maintenanceService = new FacilityMaintenanceData();
+        FacilityMaintenanceService maintenanceService = new FacilityMaintenanceService();
 
         //set up facilities for dummy data
         Facility fact1 = new Facility();

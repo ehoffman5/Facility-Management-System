@@ -4,18 +4,18 @@ import facilityBase.Facility;
 import facilityBase.FacilityDetails;
 import facilityUse.FacilityUse;
 import facilityUse.Inspections;
-import sqlData.FacilityBaseData;
-import sqlData.FacilityUseData;
+import services.FacilityBaseService;
+import services.FacilityUseService;
 
-import java.time.*;
+import java.time.LocalDate;
 import java.util.List;
 
 public class FacilityUseUI {
 
     public FacilityUseUI() throws Exception {
 
-        FacilityUseData useService = new FacilityUseData();
-        FacilityBaseData facilityService = new FacilityBaseData();
+        FacilityUseService useService = new FacilityUseService();
+        FacilityBaseService facilityService = new FacilityBaseService();
 
         //set up facilities for dummy data
         Facility fact1 = new Facility();
