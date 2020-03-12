@@ -8,10 +8,16 @@ import services.FacilityMaintenanceService;
 import java.util.List;
 
 public class FacilityMaintenanceUI {
-    public FacilityMaintenanceUI() throws Exception {
 
-        FacilityMaintenanceService maintenanceService = new FacilityMaintenanceService();
+    private final FacilityMaintenanceService maintenanceService;
 
+    public FacilityMaintenanceUI(FacilityMaintenanceService maintenanceService) {
+        this.maintenanceService = maintenanceService;
+    }
+
+    public void runMaintenanceUI(){
+
+        // TODO: Change these objects to persistence
         //set up facilities for dummy data
         Facility fact1 = new Facility();
         FacilityDetails factDet1 = new FacilityDetails();

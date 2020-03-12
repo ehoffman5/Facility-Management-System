@@ -1,5 +1,9 @@
 package clientView;
 
+import services.FacilityBaseService;
+import services.FacilityMaintenanceService;
+import services.FacilityUseService;
+
 import java.util.Scanner;
 
 public class RunClient {
@@ -9,10 +13,18 @@ public class RunClient {
      * @param args args
      * @throws Exception if there is an error creating the particular client
      */
-    @SuppressWarnings("unused")
+
     public static void main(String[] args) throws Exception {
 
         Scanner scan  = new Scanner(System.in);
+
+        FacilityBaseService facilityService = new FacilityBaseService();
+        FacilityMaintenanceService maintenanceService = new FacilityMaintenanceService();
+        FacilityUseService useService = new FacilityUseService();
+
+        FacilityBaseUI facilityBaseUI = new FacilityBaseUI(facilityService);
+        FacilityMaintenanceUI facilityMaintenanceUI = new FacilityMaintenanceUI(maintenanceService);
+        FacilityUseUI facilityUseUI = new FacilityUseUI(useService, facilityService);
 
         System.out.println("Welcome to the Facility Management System.  Which client interface would you like to use?");
         System.out.println("Type '1' for Facility Interface");
@@ -22,13 +34,13 @@ public class RunClient {
 
         switch(option) {  // choose which interface to use
             case 1:
-                FacilityBaseUI facilityClient = new FacilityBaseUI();
+                facilityBaseUI.runBaseUI();
                 break;
             case 2:
-                FacilityUseUI useClient = new FacilityUseUI();
+                facilityMaintenanceUI.runMaintenanceUI();
                 break;
             case 3:
-                FacilityMaintenanceUI maintenanceClient = new FacilityMaintenanceUI();
+                facilityUseUI.runUseUI();
                 break;
             default:
                 System.out.println("Error: invalid input");

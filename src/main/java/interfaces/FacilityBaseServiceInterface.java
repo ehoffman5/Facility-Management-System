@@ -1,6 +1,8 @@
 package interfaces;
 
 import facilityBase.Facility;
+import facilityBase.FacilityCapacity;
+
 import java.util.List;
 
 public interface FacilityBaseServiceInterface {
@@ -10,5 +12,6 @@ public interface FacilityBaseServiceInterface {
     public List<Facility> listFacilities();
     public void addFacilityDetails(int facilityNumber, String facilityPhoneNo, String facilityName);
     public Facility getFacilityInformation(int facility_number);
+    public int requestAvailableCapacity(FacilityCapacity fac);
 
 }

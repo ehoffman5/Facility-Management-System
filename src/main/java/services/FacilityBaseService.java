@@ -1,6 +1,7 @@
 package services;
 
 import facilityBase.Facility;
+import facilityBase.FacilityCapacity;
 import interfaces.FacilityBaseServiceInterface;
 import sqlData.FacilityBaseData;
 
@@ -67,5 +68,12 @@ public class FacilityBaseService implements FacilityBaseServiceInterface {
             System.err.println(se.getMessage());
         }
         return null;
+    }
+
+
+    // ---------- Facility Capacity Methods ---------- //
+    // Print the capacity of the given facility
+    public int requestAvailableCapacity(FacilityCapacity fac) {
+        return fac.getFacilityCapacity();
     }
 }

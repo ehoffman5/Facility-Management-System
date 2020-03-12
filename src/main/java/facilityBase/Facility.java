@@ -1,16 +1,11 @@
 package facilityBase;
 
-import database.DBConnector;
-import facilityBase.FacilityDetails;
-import facilityBase.FacilityCapacity;
-import java.sql.*;
-import java.util.*;
-
 public class Facility {
 
     // Variable declarations
     private int facilityNumber;
     private FacilityDetails facilityDetail;
+    private FacilityCapacity facilityCapacity;
 
     // Constructor to initialize class attributes
     public Facility() { }
@@ -31,6 +26,14 @@ public class Facility {
 
     public FacilityDetails getFacilityDetails() {
         return facilityDetail;
+    }
+
+    public void setFacilityCapacity(FacilityCapacity facilityCapacity) {
+        this.facilityCapacity = facilityCapacity;
+    }
+
+    public FacilityCapacity getFacilityCapacity() {
+        return facilityCapacity;
     }
 
 }

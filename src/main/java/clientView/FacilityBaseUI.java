@@ -1,6 +1,7 @@
 package clientView;
 
 import facilityBase.Facility;
+import facilityBase.FacilityCapacity;
 import facilityBase.FacilityDetails;
 import services.FacilityBaseService;
 
@@ -8,10 +9,15 @@ import java.util.List;
 
 public class FacilityBaseUI {
 
-    public FacilityBaseUI() throws Exception {
+    private final FacilityBaseService facService;
 
-        FacilityBaseService facService = new FacilityBaseService();
+    public FacilityBaseUI(FacilityBaseService facService) {
+        this.facService = facService;
+    }
 
+    public void runBaseUI(){
+
+        // TODO: Change these objects to persistence
         //set up facilities for dummy data
         Facility fact1 = new Facility();
         FacilityDetails factDet1 = new FacilityDetails();
@@ -25,8 +31,10 @@ public class FacilityBaseUI {
 
         Facility fact4 = new Facility();
         FacilityDetails factDet4 = new FacilityDetails();
+        FacilityCapacity factCap4 = new FacilityCapacity();
         fact4.setFacilityNumber(4);
         fact4.setFacilityDetails(factDet4);
+        fact4.setFacilityCapacity(factCap4);
 
         Facility fact7 = new Facility();
         FacilityDetails factDet7 = new FacilityDetails();
@@ -97,8 +105,8 @@ public class FacilityBaseUI {
 
         System.out.println("\nFacilityClient: *************** Request available capacity of a facility *************************");
         //uses sample data
-        //int capacityAvail = facCapacityService.requestAvailableCapacity(fact4);  // TODO: fix this
-        //System.out.println("There are " + capacityAvail + " occupancy spaces currently available at Facility #" + fact4.getFacilityNumber() + ".");
+        int capacityAvail = facService.requestAvailableCapacity(fact4.getFacilityCapacity());
+        System.out.println("There are " + capacityAvail + " occupancy spaces currently available at Facility #" + fact4.getFacilityNumber() + ".");
 
     }
 }

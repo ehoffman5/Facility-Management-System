@@ -10,16 +10,11 @@ public class FacilityCapacity extends Facility {
 
 
     // ---------- Getter and Setter Methods ---------- //
-    public void setFacilityCapacity(int facilityCapacity) {
+    public void setCapacity(int facilityCapacity) {
         this.facilityCapacity = facilityCapacity;
     }
 
-    public int getFacilityCapacity() {
+    public int getCapacity() {
         return facilityCapacity;
-    }
-
-    // Print the capacity of the given facility
-    public int requestAvailableCapacity(FacilityCapacity fac) {
-        return fac.getFacilityCapacity();
     }
 }

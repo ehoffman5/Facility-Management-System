@@ -12,11 +12,17 @@ import java.util.List;
 
 public class FacilityUseUI {
 
-    public FacilityUseUI() throws Exception {
+    private final FacilityUseService useService;
+    private final FacilityBaseService facilityService;
 
-        FacilityUseService useService = new FacilityUseService();
-        FacilityBaseService facilityService = new FacilityBaseService();
+    public FacilityUseUI(FacilityUseService useService, FacilityBaseService facilityService) {
+        this.useService = useService;
+        this.facilityService = facilityService;
+    }
 
+    public void runUseUI(){
+
+        // TODO: Change these objects to persistence
         //set up facilities for dummy data
         Facility fact1 = new Facility();
         FacilityDetails factDet1 = new FacilityDetails();
