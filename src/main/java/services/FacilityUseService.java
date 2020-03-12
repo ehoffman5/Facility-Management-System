@@ -19,9 +19,9 @@ public class FacilityUseService implements FacilityUseServiceInterface {
     public void assignFacilityToUse(FacilityUse facUse) {
         //ensures the start and end data are valid and room isn't already in use at that time
         if (facUse.getStartDate().isAfter(facUse.getEndDate())) {
-            System.out.println("Start date must be before end date.");
+            System.out.println("Error: Start date must be before end date.");
         } else if (isInUseDuringInterval(facUse)) {
-            System.out.println("This room at the facility is already in use during this interval.");
+            System.out.println("Error: This room at the facility is already in use during this interval.");
         } else {
             try {
                 assignFacilityToUse(facUse);
