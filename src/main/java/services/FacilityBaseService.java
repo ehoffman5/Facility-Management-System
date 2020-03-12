@@ -74,6 +74,6 @@ public class FacilityBaseService implements FacilityBaseServiceInterface {
     // ---------- Facility Capacity Methods ---------- //
     // Print the capacity of the given facility
     public int requestAvailableCapacity(FacilityCapacity fac) {
-        return fac.getFacilityCapacity();
+        return fac.getFacilityCapacity().getCapacity();
     }
 }
