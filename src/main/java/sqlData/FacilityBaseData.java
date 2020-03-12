@@ -3,13 +3,13 @@ package sqlData;
 import database.DBConnector;
 import facilityBase.Facility;
 import facilityBase.FacilityDetails;
-import interfaces.FacilityBaseDataImpl;
+import interfaces.FacilityBaseDataInterface;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FacilityBaseData implements FacilityBaseDataImpl {
+public class FacilityBaseData implements FacilityBaseDataInterface {
 
     // Data class separates DB management concerns from service classes
 

@@ -4,7 +4,7 @@ import facilityBase.Facility;
 
 import java.util.List;
 
-public interface FacilityBaseDataImpl {
+public interface FacilityBaseDataInterface {
 
     public void addFacility(Facility facility);
     public void removeFacility(int facilityNumber);

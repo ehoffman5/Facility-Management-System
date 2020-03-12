@@ -1,12 +1,12 @@
 package services;
 
 import facilityBase.Facility;
-import interfaces.FacilityBaseServiceImpl;
+import interfaces.FacilityBaseServiceInterface;
 import sqlData.FacilityBaseData;
 
 import java.util.List;
 
-public class FacilityBaseService implements FacilityBaseServiceImpl {
+public class FacilityBaseService implements FacilityBaseServiceInterface {
 
     // Service class separates concerns from main classes with getter and setter methods
 

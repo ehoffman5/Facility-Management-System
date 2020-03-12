@@ -4,14 +4,14 @@ import database.DBConnector;
 import facilityBase.Facility;
 import facilityUse.FacilityUse;
 import facilityUse.Inspections;
-import interfaces.FacilityUseDataImpl;
+import interfaces.FacilityUseDataInterface;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FacilityUseData implements FacilityUseDataImpl {
+public class FacilityUseData implements FacilityUseDataInterface {
 
     // Data class separates DB management concerns from service classes
 

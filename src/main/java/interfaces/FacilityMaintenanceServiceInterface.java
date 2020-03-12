@@ -4,7 +4,7 @@ import facilityBase.Facility;
 import facilityMaintenance.FacilityMaintenance;
 import java.util.List;
 
-public interface FacilityMaintenanceServiceImpl {
+public interface FacilityMaintenanceServiceInterface {
 
     public FacilityMaintenance makeFacilityMaintRequest(Facility fac, String maintenanceDescription, int cost);
     public List<FacilityMaintenance> listFacilityMaintRequests(Facility fac);

@@ -3,7 +3,7 @@ package services;
 import facilityBase.Facility;
 import facilityMaintenance.FacilityMaintenance;
 import facilityUse.FacilityUse;
-import interfaces.FacilityMaintenanceServiceImpl;
+import interfaces.FacilityMaintenanceServiceInterface;
 import sqlData.FacilityMaintenanceData;
 
 import java.time.LocalDate;
@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class FacilityMaintenanceService implements FacilityMaintenanceServiceImpl {
+public class FacilityMaintenanceService implements FacilityMaintenanceServiceInterface {
 
     // Service class separates concerns from main classes with getter and setter methods
 
