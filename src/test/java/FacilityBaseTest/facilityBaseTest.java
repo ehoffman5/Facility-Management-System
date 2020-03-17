@@ -6,12 +6,11 @@ import facilityBase.FacilityCapacity;
 import java.sql.*;
 import java.util.*;
 
-public class facilityBaseTest;
-{
-public void setFacilityNumber(int facilityNumber);
-        SetFacilityNumber setFacilityNumber = new setFacilityNumber
+public class facilityBaseTest {
+public void setFacilityNumber(int facilityNumber) {
+        SetFacilityNumber setFacilityNumber = new setFacilityNumber;
         Assert.assertEquals(int, FacilityBase.facilityNumber());
-
+}
 public void setFacilityDetails(FacilityDetails facilityDetail);
         SetFacilityDetails setFacilityDetails = new FacilityDetails
         Assert.assertEquals(facilityDetail, FacilityBase.facilityDetail());
