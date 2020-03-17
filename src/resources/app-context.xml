@@ -11,32 +11,63 @@
 
     <context:component-scan base-package="com.facilitymanagement" />
 
+
     <!-- FacilityBase Beans -->
+    <!-- FacilityDetails Beans -->
     <bean id="facilityName" class="facilityBase.FacilityDetails" scope="prototype"/>
     <bean id="facilityPhoneNo" class="facilityBase.FacilityDetails" scope="prototype"/>
+    <bean id="FacilityDetails" class="facilityBase.FacilityDetails" scope="prototype">
+        <property name="facilityName" ref="facilityName" />
+        <property name="facilityPhoneNo" ref="facilityPhoneNo" />
+    </bean>
 
+    <!-- FacilityCapacity Beans -->
     <bean id="capacity" class="facilityBase.FacilityCapacity" scope="prototype"/>
+    <bean id="FacilityCapacity" class="facilityBase.FacilityCapacity" scope="prototype">
+        <property name="capacity" ref="capacity" />
+    </bean>
 
+    <!-- Facility Beans -->
     <bean id="facilityNumber" class="facilityBase.Facility" scope="prototype"/>
     <bean id="facilityDetail" class="facilityBase.Facility" scope="prototype">
-        <property name="facilityName" ref="facilityName" />
-        <property name="facilityPhoneNo" ref="facilityPhoneNo" />
+        <property name="FacilityDetails" ref="FacilityDetails" />
     </bean>
     <bean id="facilityCapacity" class="facilityBase.Facility" scope="prototype">
-        <property name="facilityName" ref="facilityName" />
-        <property name="facilityPhoneNo" ref="facilityPhoneNo" />
+        <property name="FacilityCapacity" ref="FacilityCapacity" />
     </bean>
+    <bean id="Facility" class="facilityBase.Facility" scope="prototype">
+        <property name="facilityNumber" ref="facilityNumber"/>
+        <property name="facilityDetail" ref="facilityDetail" />
+        <property name="facilityCapacity" ref="facilityCapacity" />
+    </bean>
+
 
     <!-- FacilityMaintenance Beans -->
     <bean id="cost" class="facilityMaintenance.FacilityMaintenance" scope="prototype"/>
     <bean id="maintRequestDescription" class="facilityMaintenance.FacilityMaintenance" scope="prototype"/>
+    <bean id="FacilityMaintenacne" class="facilityBase.FacilityMaintenacne" scope="prototype">
+        <property name="cost" ref="cost" />
+        <property name="maintRequestDescription" ref="maintRequestDescription" />
+    </bean>
+
 
     <!-- FacilityUse Beans -->
+    <!-- Inspections Beans -->
     <bean id="inspectionDate" class="facilityUse.Inspections" scope="prototype"/>
     <bean id="inspectionDetails" class="facilityUse.Inspections" scope="prototype"/>
+    <bean id="Inspections" class="facilityBase.Inspections" scope="prototype">
+        <property name="inspectionDate" ref="inspectionDate" />
+        <property name="inspectionDetails" ref="inspectionDetails" />
+    </bean>
 
+    <!-- Use Beans -->
     <bean id="purposeOfUse" class="facilityUse.FacilityUse" scope="prototype"/>
     <bean id="startDate" class="facilityUse.FacilityUse" scope="prototype"/>
     <bean id="endDate" class="facilityUse.FacilityUse" scope="prototype"/>
+    <bean id="FacilityUse" class="facilityBase.FacilityUse" scope="prototype">
+        <property name="purposeOfUse" ref="purposeOfUse" />
+        <property name="startDate" ref="startDate" />
+        <property name="endDate" ref="endDate" />
+    </bean>
 
 </beans>
