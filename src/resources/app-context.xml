@@ -45,7 +45,7 @@
     <!-- FacilityMaintenance Beans -->
     <bean id="cost" class="facilityMaintenance.FacilityMaintenance" scope="prototype"/>
     <bean id="maintRequestDescription" class="facilityMaintenance.FacilityMaintenance" scope="prototype"/>
-    <bean id="FacilityMaintenacne" class="facilityBase.FacilityMaintenacne" scope="prototype">
+    <bean id="FacilityMaintenacne" class="facilityMaintenance.FacilityMaintenance" scope="prototype">
         <property name="cost" ref="cost" />
         <property name="maintRequestDescription" ref="maintRequestDescription" />
     </bean>
@@ -55,7 +55,7 @@
     <!-- Inspections Beans -->
     <bean id="inspectionDate" class="facilityUse.Inspections" scope="prototype"/>
     <bean id="inspectionDetails" class="facilityUse.Inspections" scope="prototype"/>
-    <bean id="Inspections" class="facilityBase.Inspections" scope="prototype">
+    <bean id="Inspections" class="facilityUse.Inspections" scope="prototype">
         <property name="inspectionDate" ref="inspectionDate" />
         <property name="inspectionDetails" ref="inspectionDetails" />
     </bean>
@@ -64,7 +64,7 @@
     <bean id="purposeOfUse" class="facilityUse.FacilityUse" scope="prototype"/>
     <bean id="startDate" class="facilityUse.FacilityUse" scope="prototype"/>
     <bean id="endDate" class="facilityUse.FacilityUse" scope="prototype"/>
-    <bean id="FacilityUse" class="facilityBase.FacilityUse" scope="prototype">
+    <bean id="FacilityUse" class="facilityUse.FacilityUse" scope="prototype">
         <property name="purposeOfUse" ref="purposeOfUse" />
         <property name="startDate" ref="startDate" />
         <property name="endDate" ref="endDate" />
