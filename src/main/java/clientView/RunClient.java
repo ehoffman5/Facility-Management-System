@@ -1,8 +1,7 @@
 package clientView;
 
-import services.FacilityBaseService;
-import services.FacilityMaintenanceService;
-import services.FacilityUseService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import java.util.Scanner;
 
@@ -18,13 +17,13 @@ public class RunClient {
 
         Scanner scan  = new Scanner(System.in);
 
-        FacilityBaseService facilityService = new FacilityBaseService();
-        FacilityMaintenanceService maintenanceService = new FacilityMaintenanceService();
-        FacilityUseService useService = new FacilityUseService();
+        ApplicationContext context = new FileSystemXmlApplicationContext("src/resources/app-context.xml");
+        System.out.println("***************** Application Context instantiated! ****************** \n");
 
-        FacilityBaseUI facilityBaseUI = new FacilityBaseUI(facilityService);
-        FacilityMaintenanceUI facilityMaintenanceUI = new FacilityMaintenanceUI(maintenanceService);
-        FacilityUseUI facilityUseUI = new FacilityUseUI(useService, facilityService);
+        // Instantiate objects of Spring beans to use in activating client UIs
+        FacilityBaseUI facilityBaseUI =(FacilityBaseUI) context.getBean("FacilityBaseUI");
+        FacilityMaintenanceUI facilityMaintenanceUI =(FacilityMaintenanceUI) context.getBean("FacilityMaintenanceUI");
+        FacilityUseUI facilityUseUI =(FacilityUseUI) context.getBean("FacilityUseUI");
 
         System.out.println("Welcome to the Facility Management System.  Which client interface would you like to use?");
         System.out.println("Type '1' for Facility Interface");

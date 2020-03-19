@@ -11,7 +11,11 @@ public class FacilityBaseService implements FacilityBaseServiceInterface {
 
     // Service class separates concerns from main classes with getter and setter methods
 
-    private FacilityBaseData facData = new FacilityBaseData();
+    private FacilityBaseData facData;
+
+    public FacilityBaseService(FacilityBaseData facData) {
+        this.facData = facData;
+    }
 
     // ---------- Facility Base Methods ---------- //
     // Add new facility

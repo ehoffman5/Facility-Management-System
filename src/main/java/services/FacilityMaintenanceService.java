@@ -17,7 +17,11 @@ public class FacilityMaintenanceService implements FacilityMaintenanceServiceInt
 
     // Service class separates concerns from main classes with getter and setter methods
 
-    private FacilityMaintenanceData maintenanceData = new FacilityMaintenanceData();
+    private FacilityMaintenanceData maintenanceData;
+
+    public FacilityMaintenanceService(FacilityMaintenanceData maintenanceData) {
+        this.maintenanceData = maintenanceData;
+    }
 
     // ---------- Facility Maintenance Methods ---------- //
     // Method for submitting a new request

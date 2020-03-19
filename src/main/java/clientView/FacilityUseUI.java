@@ -4,8 +4,6 @@ import facilityBase.Facility;
 import facilityBase.FacilityDetails;
 import facilityUse.FacilityUse;
 import facilityUse.Inspections;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 import services.FacilityBaseService;
 import services.FacilityUseService;
 
@@ -24,28 +22,25 @@ public class FacilityUseUI {
 
     public void runUseUI(){
 
-        ApplicationContext context = new FileSystemXmlApplicationContext("src/resources/app-context.xml");
-        System.out.println("***************** Application Context instantiated! ******************");
-
         // TODO: Change these objects to persistence
         //set up facilities for dummy data
-        Facility fact1 = (Facility) context.getBean("Facility");
-        FacilityDetails factDet1 = (FacilityDetails) context.getBean("FacilityDetails");
+        Facility fact1 = new Facility();
+        FacilityDetails factDet1 = new FacilityDetails();
         fact1.setFacilityNumber(1);
         fact1.setFacilityDetails(factDet1);
 
-        Facility fact3 = (Facility) context.getBean("Facility");
-        FacilityDetails factDet3 = (FacilityDetails) context.getBean("FacilityDetails");
+        Facility fact3 = new Facility();
+        FacilityDetails factDet3 = new FacilityDetails();
         fact3.setFacilityNumber(3);
         fact3.setFacilityDetails(factDet3);
 
-        Facility fact4 = (Facility) context.getBean("Facility");
-        FacilityDetails factDet4 = (FacilityDetails) context.getBean("FacilityDetails");
+        Facility fact4 = new Facility();
+        FacilityDetails factDet4 = new FacilityDetails();
         fact4.setFacilityNumber(4);
         fact4.setFacilityDetails(factDet4);
 
-        Facility fact7 = (Facility) context.getBean("Facility");
-        FacilityDetails factDet7 = (FacilityDetails) context.getBean("FacilityDetails");
+        Facility fact7 = new Facility();
+        FacilityDetails factDet7 = new FacilityDetails();
         fact7.setFacilityNumber(7);
         fact7.setFacilityDetails(factDet7);
 
@@ -59,9 +54,9 @@ public class FacilityUseUI {
         }
 
         //set up new facility 12 to be checked if it's in use during an interval
-        FacilityUse factUse = (FacilityUse) context.getBean("FacilityUse");
+        FacilityUse factUse = new FacilityUse();
         factUse.setFacilityNumber(12);
-        FacilityDetails factDet = (FacilityDetails) context.getBean("FacilityDetails");
+        FacilityDetails factDet = new FacilityDetails();
         factDet.setFacilityName("Test Facility");
         factDet.setFacilityNumber(12);
         factUse.setFacilityDetails(factDet);

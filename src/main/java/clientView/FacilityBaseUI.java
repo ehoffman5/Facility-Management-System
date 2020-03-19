@@ -5,9 +5,6 @@ import facilityBase.FacilityCapacity;
 import facilityBase.FacilityDetails;
 import services.FacilityBaseService;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
-
 import java.util.List;
 
 public class FacilityBaseUI {
@@ -20,38 +17,35 @@ public class FacilityBaseUI {
 
     public void runBaseUI(){
 
-        ApplicationContext context = new FileSystemXmlApplicationContext("src/resources/app-context.xml");
-        System.out.println("***************** Application Context instantiated! ******************");
-
         // TODO: Change these objects to persistence
         //set up facilities for dummy data
-        Facility fact1 = (Facility) context.getBean("Facility");
-        FacilityDetails factDet1 = (FacilityDetails) context.getBean("FacilityDetails");
+        Facility fact1 = new Facility();
+        FacilityDetails factDet1 = new FacilityDetails();
         fact1.setFacilityNumber(1);
         fact1.setFacilityDetails(factDet1);
 
-        Facility fact3 = (Facility) context.getBean("Facility");
-        FacilityDetails factDet3 = (FacilityDetails) context.getBean("FacilityDetails");
+        Facility fact3 = new Facility();
+        FacilityDetails factDet3 = new FacilityDetails();
         fact3.setFacilityNumber(3);
         fact3.setFacilityDetails(factDet3);
 
-        Facility fact4 = (Facility) context.getBean("Facility");
-        FacilityDetails factDet4 = (FacilityDetails) context.getBean("FacilityDetails");
-        FacilityCapacity factCap4 = (FacilityCapacity) context.getBean("FacilityCapacity");
+        Facility fact4 = new Facility();
+        FacilityDetails factDet4 = new FacilityDetails();
+        FacilityCapacity factCap4 = new FacilityCapacity();
         fact4.setFacilityNumber(4);
         fact4.setFacilityDetails(factDet4);
         fact4.setFacilityCapacity(factCap4);
 
-        Facility fact7 = (Facility) context.getBean("Facility");
-        FacilityDetails factDet7 = (FacilityDetails) context.getBean("FacilityDetails");
+        Facility fact7 = new Facility();
+        FacilityDetails factDet7 = new FacilityDetails();
         fact7.setFacilityNumber(7);
         fact7.setFacilityDetails(factDet7);
 
 
         System.out.println("\nFacilityClient: *************** Instantiating a facility and its details *************************");
-        Facility fact = (Facility) context.getBean("Facility");
+        Facility fact = new Facility();
         fact.setFacilityNumber(11);
-        FacilityDetails detail = (FacilityDetails) context.getBean("FacilityDetails");
+        FacilityDetails detail = new FacilityDetails();
         detail.setFacilityNumber(11);
         detail.setFacilityName("IT Center");
         detail.setFacilityPhoneNo("5550123");

@@ -12,7 +12,11 @@ public class FacilityUseService implements FacilityUseServiceInterface {
 
     // Service class separates concerns from main classes with getter and setter methods
 
-    private FacilityUseData useData = new FacilityUseData();
+    private FacilityUseData useData;
+
+    public FacilityUseService(FacilityUseData useData) {
+        this.useData = useData;
+    }
 
     // ---------- FacilityUse Methods ---------- //
     // Make new facilityBase reservation
