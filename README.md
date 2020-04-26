@@ -4,7 +4,7 @@ Systems Requirement Document for this project can be found at: https://docs.goog
 ### Instructions for running this program:
 This program should currently be run locally.  Future iterations of this project will be hosted on Heroku.
 
-To run this program:
+To run the project:
 1) Clone this repository to your local device.
 2) Open the project in your IDE of choice.
 3) Build the project and run it using the RunClient.java file.
