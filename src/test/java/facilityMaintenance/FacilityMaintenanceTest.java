@@ -14,7 +14,7 @@ public class FacilityMaintenanceTest extends Facility {
 
         String maintRequestDescription = facilityMaintenance.getMaintRequestDescription();
 
-        assertEquals(maintRequestDescription, facilityMaintenance.getMaintRequestDescription());
+        assertEquals("Test", maintRequestDescription);
     }
 
     @Test
@@ -25,6 +25,6 @@ public class FacilityMaintenanceTest extends Facility {
 
         float cost = facilityMaintenance.getCost();
 
-        assertEquals(cost, 134, facilityMaintenance.getCost());
+        assertEquals(134, cost, 0);
     }
 }

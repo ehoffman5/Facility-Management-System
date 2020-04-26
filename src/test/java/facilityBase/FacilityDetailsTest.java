@@ -13,16 +13,16 @@ public class FacilityDetailsTest extends Facility{
 
         String facilityName = facilityDetails.getFacilityName();
 
-        assertEquals(facilityName, "Name");
+        assertEquals("Name", facilityName);
     }
 
     @Test
     public void testFacilityPhoneNo() {
         FacilityDetails facilityDetails = new FacilityDetails();
-        facilityDetails.setFacilityPhoneNo("Phone");
+        facilityDetails.setFacilityPhoneNo("800-888-8888");
 
         String facilityPhoneNo = facilityDetails.getFacilityPhoneNo();
 
-        assertEquals(facilityPhoneNo, "Phone");
+        assertEquals("800-888-8888", facilityPhoneNo);
     }
 }

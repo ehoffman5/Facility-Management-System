@@ -13,7 +13,7 @@ public class FacilityTest {
 
         int facilityNumber = facility.getFacilityNumber();
 
-        assertEquals(facilityNumber, 123);
+        assertEquals(123, facilityNumber);
     }
 
 }

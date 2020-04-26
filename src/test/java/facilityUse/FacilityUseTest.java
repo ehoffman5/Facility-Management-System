@@ -14,7 +14,7 @@ public class FacilityUseTest {
 
         String purposeOfUse = facilityUse.getPurposeOfUse();
 
-        assertEquals(purposeOfUse, "Test");
+        assertEquals("Test", purposeOfUse);
     }
 
     @Test
@@ -25,7 +25,7 @@ public class FacilityUseTest {
 
         LocalDate startDate = facilityUse.getStartDate();
 
-        assertEquals(startDate, LocalDate.parse("2018-11-01"));
+        assertEquals(LocalDate.parse("2018-11-01"), startDate);
     }
 
     @Test
@@ -36,6 +36,6 @@ public class FacilityUseTest {
 
         LocalDate endDate = facilityUse.getEndDate();
 
-        assertEquals(endDate, LocalDate.parse("2018-11-01"));
+        assertEquals(LocalDate.parse("2018-11-01"), endDate);
     }
 }

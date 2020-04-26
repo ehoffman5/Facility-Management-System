@@ -13,6 +13,6 @@ public class FacilityCapacityTest {
 
         int capacity = facilityCapacity.getCapacity();
 
-        assertEquals(capacity, 134);
+        assertEquals(134, capacity);
     }
 }

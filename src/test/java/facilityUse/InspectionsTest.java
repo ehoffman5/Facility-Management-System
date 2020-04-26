@@ -13,7 +13,7 @@ public class InspectionsTest  {
 
         LocalDate inspectionDate = inspections.getInspectionDate();
 
-        assertEquals(inspectionDate, LocalDate.parse("2020-01-01"));
+        assertEquals(LocalDate.parse("2020-01-01"), inspectionDate);
 
     }
 
@@ -24,6 +24,6 @@ public class InspectionsTest  {
 
         String inspectionDetails = inspections.getInspectionDetails();
 
-        assertEquals(inspectionDetails, "Details");
+        assertEquals("Details", inspectionDetails);
     }
 }
